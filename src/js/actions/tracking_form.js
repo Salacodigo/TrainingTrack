@@ -1,6 +1,6 @@
-// import  Exercises  from '../classes/class_exercises.js';
+import  Exercises  from '../classes/class_exercises.js';
 import  Dates  from '../classes/class_date.js';
-import TrainingSession from '../classes/class_trainingSession.js';
+import  TrainingSession from '../classes/class_trainingSession.js';
 import  ExercTrainingSessionises  from '../classes/class_trainingSession.js';
 
 import {
@@ -9,12 +9,17 @@ import {
 import {
     exerciseListInstance
 } from "./exercise_form.js"
+import {
+    clearRepsTracking,
+    printHistoricResults
+} from "../actions/UI/UIActions.js"
 
 
 // Form
 const trackingForm = document.getElementById('routine-tracking-container');
 const trackingSubmitButton = document.getElementById('reps-tracking-btn');
 const saveTrackingBtn = document.getElementById('save-tracking-btn');
+
 
 // Instances
 let dateInstance = new Dates();
@@ -83,7 +88,9 @@ function isEnabledSaveTrackingBtn(){
 function saveTracking(){
     console.log("Guardar y ver resultados");
     trainningInstance.set(dateInstance.getTodayDate(), exerciseListInstance.getList());
-    
+
+    clearRepsTracking();
+    printHistoricResults(trainningInstance.get('sessionId1'));
 }
 
 

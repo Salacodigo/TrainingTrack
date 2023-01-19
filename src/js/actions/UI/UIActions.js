@@ -9,6 +9,9 @@ const exerciseFormContainer = document.getElementById('exercises-list-register-c
 // Reps Form Elements
 const routineFormContainer = document.getElementById('routine-tracking-container');
 
+// Dashboard Results Elements
+const resultsDashboardContainer = document.getElementById('results-dashboard-container');
+
 
 
 
@@ -114,6 +117,46 @@ function setMultipleAttributesonElement(elem, elemAttributes) {
     }
 }
 
+function clearRepsTracking(){
+    console.log("Seguir limpiando");
+    routineFormContainer.classList.remove('showing');
+    routineFormContainer.classList.add('hidden');
+    
+    resultsDashboardContainer.classList.remove('hidden');
+    resultsDashboardContainer.classList.add('showing');
+}
+
+function printHistoricResults( historicData ){
+    console.log("DATA:", historicData)
+    const historicResultsContainer = document.getElementById('routine-historic-results');
+
+    const divResults = document.createElement('div');
+    
+    const dateText = document.createElement('p');
+    const info = historicData['sessionDate'];
+    dateText.innerHTML = info;
+    
+
+    const sessionExercises = historicData['sessionExercises'];
+    const sessionExercisesText = document.createElement('p');
+    for(let pos=0; pos < sessionExercises.length; pos++){
+        console.log(
+            "SIRVIO?",
+            sessionExercises[pos].name,
+            sessionExercises[pos].reps
+        )
+        sessionExercisesText.innerHTML += `
+            ${sessionExercises[pos].name} : ${sessionExercises[pos].reps}
+        `;
+        
+    }
+    
+    
+    divResults.appendChild(dateText);
+    divResults.appendChild(sessionExercisesText);
+    historicResultsContainer.appendChild(divResults);
+
+}
 
 
 export {
@@ -121,5 +164,7 @@ export {
     showExercisesFormRegisterUI,
     paintExerciseList,
     cleanExerciseFormUI,
-    showRepsTracking
+    showRepsTracking,
+    clearRepsTracking,
+    printHistoricResults
 }

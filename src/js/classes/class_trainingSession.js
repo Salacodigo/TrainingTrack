@@ -1,5 +1,6 @@
 import {
     setInLocalStorage,
+    getFromLocalStorage
 } from '../storage/function_localStorage.js';
 
 export default class TrainingSession{
@@ -54,7 +55,7 @@ export default class TrainingSession{
     readSession(id){
         let session = undefined;
         try {
-            session = JSON.parse(localStorage.getItem(id));
+            session = getFromLocalStorage(id);
         } catch (error) {
             console.log(error);
         }
