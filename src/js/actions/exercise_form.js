@@ -1,8 +1,7 @@
 import  Exercises  from '../classes/class_exercises.js';
-import TrainingSession from '../classes/class_trainingSession.js';
 
 import {
-    setInLocalStorage
+    setInLocalStorage,
 } from '../storage/function_localStorage.js';
 
 import {
@@ -14,7 +13,7 @@ import {
 
 
 // Exercises instance
-let exerciseList = new Exercises();
+let exerciseListInstance = new Exercises();
 
 
 // Form
@@ -28,7 +27,7 @@ const inputExerciseName = document.getElementById('exercise-name');
 
 // AddEventListeners
 
-exerciseEventListeners();
+// exerciseEventListeners();
 function exerciseEventListeners(){
     document.addEventListener('DOMContentLoaded', () => {
         exerciseForm.addEventListener('submit', submitExerciseForm);
@@ -49,11 +48,10 @@ function submitExerciseForm(e){
     e.preventDefault();
     try {
         getExerciseFormValues();
-        setInLocalStorage("ejercicio", exerciseList.getList());
-        paintExerciseList(exerciseList.getList());
+        setInLocalStorage("ejercicio", exerciseListInstance.getList());
+        paintExerciseList(exerciseListInstance.getList());
         exerciseForm.reset();
         isEnabledStartTrainningBtn();
-
 
     } catch (error) {
         console.log(error);
@@ -65,7 +63,7 @@ function getExerciseFormValues(){
         throw new Error("Debe ingresar un nombre de ejercicio");
     }
     let exerciseNameValue = inputExerciseName.value;
-    exerciseList.set( exerciseNameValue );
+    exerciseListInstance.set( exerciseNameValue );
 }
 
 function isEnabledStartTrainningBtn(){
@@ -78,10 +76,11 @@ function isEnabledStartTrainningBtn(){
 
 function submitExerciseList(){
     cleanExerciseFormUI();
-    showRepsTracking();
+    showRepsTracking( exerciseListInstance );
 }
 
 
 export { 
-    exerciseEventListeners 
+    exerciseListInstance,
+    exerciseEventListeners
 }

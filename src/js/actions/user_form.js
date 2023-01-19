@@ -25,7 +25,7 @@ const inputUserName = document.getElementById('user-name');
 
 // AddEventListeners
 
-// eventListeners();
+// userEventListeners();
 function userEventListeners(){
     document.addEventListener('DOMContentLoaded', () => {
         form.addEventListener('submit', submitUserForm);
@@ -44,7 +44,6 @@ function writeDefaultValuesInForm(){
 function submitUserForm(e){
     e.preventDefault();
     try {
-        console.log("Se envia el formulario");
         getUserFormValues();
         setInLocalStorage("objetoClase", userInstance.getInformation());
 

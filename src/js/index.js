@@ -11,10 +11,14 @@ import {
 import {
     exerciseEventListeners
 } from "../js/actions/exercise_form.js";
+import {
+    trackingEventListeners
+} from "../js/actions/tracking_form.js"
 
 console.log("Iniciando...");
 userEventListeners();
 exerciseEventListeners();
+trackingEventListeners();
 console.log("Ejecutandose");
 
 

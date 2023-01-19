@@ -24,15 +24,16 @@ export default class Exercises {
     }
 
     assignReps( id, number ){
-        const exercisesList = this.getList();
+        id = Number(id)
+        const newExercisesList = this.getList();
         
-        for(let listPosition = 0; listPosition < exercisesList.length; listPosition++){
+        for(let listPosition = 0; listPosition < newExercisesList.length; listPosition++){
 
-            if( exercisesList[listPosition].id === id ){
-                exercisesList[listPosition].reps = number;
+            if( newExercisesList[listPosition].id === id ){
+                newExercisesList[listPosition].reps = number;
             }
+            this.updateList(newExercisesList);
         } 
-        this.updateList(exercisesList);
     }
 
 }

@@ -1,3 +1,7 @@
+import {
+    setInLocalStorage,
+} from '../storage/function_localStorage.js';
+
 export default class TrainingSession{
     constructor(){
         this.sessionId = 1;
@@ -34,10 +38,8 @@ export default class TrainingSession{
             sessionExercises:   this.sessionExercises,
         }
         try {
-            localStorage.setItem(
-                this.sessionId, 
-                JSON.stringify(session)
-            );
+            const keySession = `sessionId${this.sessionId}`
+            setInLocalStorage( keySession, JSON.stringify(session))
             this.sessionId++;
         } catch (error) {
             console.log(error);
@@ -46,7 +48,7 @@ export default class TrainingSession{
             "Se ha guardado la sesion correctamente",
             session
         ]
-        return rta;
+        console.log(rta)
     }
 
     readSession(id){

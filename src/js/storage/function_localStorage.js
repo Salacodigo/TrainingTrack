@@ -7,6 +7,17 @@ function setInLocalStorage( key, jsonObject ){
     }
 }
 
+function getFromLocalStorage( key ){
+    try {
+        const info = JSON.parse(localStorage.getItem(key));
+        return info;
+    } catch (error) {
+        throw new error(error);
+    }
+}
+
+
 export { 
-    setInLocalStorage
+    setInLocalStorage,
+    getFromLocalStorage
 }
