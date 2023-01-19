@@ -1,6 +1,8 @@
 # TrainningTrack
 MVP to Track physical activity. A list of exercises with reps.
 
+[ link to project ](https://salacodigo.github.io/TrainningTrack/src/)
+
 ```
 ✓
 
