@@ -1,4 +1,23 @@
-#routine_tracking{
-    background-color: green;
+#routine-tracking{
+    
+    margin: 5px auto 10px;
     border: $test;
+
+    label{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .span-style{
+            margin: 5px 20px;
+        }
+
+        .input-field{
+            margin: 10px 20px;
+            width: 100px;
+            box-shadow:0 0 0px 0px rgba(0,0,0,0.0);
+        }
+
+    }
+
 }
