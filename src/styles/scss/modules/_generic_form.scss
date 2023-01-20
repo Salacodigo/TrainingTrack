@@ -4,20 +4,20 @@
 .form-container{
     display: flex;
     flex-direction: column;
-    
+    margin: 10px auto 0px;
     
     .form-design{
         width: 80%;
         font-family: $font-sans;
-        font-size: 1.15rem;
+        font-size: 0.7rem;
         
         input {
             width: 100%;
             margin: 12px 0px 20px;
             padding: 15px;
             border-radius: 15px;
-            font-weight: 600;
-            font-size: 1.0rem;
+            font-weight: 400;
+            font-size: 0.8rem;
             border: 1px solid rgb(212, 212, 212);
             box-shadow:0 0 15px 7px rgba(0,0,0,0.1);
             transition: .2s ease-in-out;
@@ -30,12 +30,12 @@
     }
 
     .form-button{
-
         padding:10px;
+        margin: 0px auto 20px;
         border:none;
         background-color:$blue;
         color:#fff;
-        font-weight:600;
+        font-weight:500;
         border-radius:5px;
         width:100%;
         transition: .2s ease-in-out;
@@ -46,38 +46,5 @@
     .form-button:active{
         background-color: $btn-green;
     }
-
-
-    // .exercise-list-container{
-    //     display: flex;
-    //     margin: 15px;
-        
-    //     .exercise-list{
-    //         margin: 5px 0px 15px;
-    //         padding: 10px;
-    //         display: flex;
-    //         align-items: center;
-    //         flex-direction: column;
-    //         list-style: none;
-    //         width: 100%;
-    //         background-color: rgb(246, 246, 246);
-    //         box-shadow:0 0 15px 3px rgba(0,0,0,0.06);
-    //         transition: .2s ease-in-out;
-            
-    //         .exercise-item{
-    //             margin: 5px;
-    //             padding: 5px;
-    //             width: 200px;
-    //             text-align: center;
-    //             border: 1px solid white;
-    //             border-radius: 5px;
-    //             box-shadow:0 0 15px 3px rgba(0,0,0,0.06);
-                
-
-    //         }
-    //     }
-    // }
-
-
 }
 

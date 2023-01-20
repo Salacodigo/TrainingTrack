@@ -3,24 +3,24 @@
 
 .title-container{
     display: flex;
-    justify-self: center;
-    align-self: center;
-    width: 80%;
-    justify-items: center;
-    align-items: center;
     flex-direction: column;
-    margin: 20px ;
+    width: 80%;
+    align-items: center;
+    margin: 10px auto;
     
     .title{
-        text-align: center;
         width: 100%;
+        min-width: 280px;
+        margin: 0px auto 10px;
+        text-align: center;
         font-family: $font-sans;
-        font-size: 2rem;
+        font-size: 1.2rem;
     }
     
     .subtitle{
-        text-align: end;
-        width: 90%;
+        text-align: start;
+        width: 100%;
+        margin: 0px auto 10px;
         font-family: $font-mono;
         font-size: 0.8rem;
     }

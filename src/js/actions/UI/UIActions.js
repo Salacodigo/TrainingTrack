@@ -39,7 +39,8 @@ function cleanUserFormUI( name ){
 }
 
 function printUserName( name ){
-    userNameGreeting.innerHTML = `¡Hola, ${name}! `;
+    userNameGreeting.innerHTML = `<span>¡Hola, ${name}! 
+    </span>`;
 }
 
 function showExercisesFormRegisterUI( ){
@@ -95,6 +96,7 @@ function paintRoutineExercises(exercisesIntance){
         
 
         const inputReps = document.createElement('input');
+        inputReps.defaultValue=0;
         inputReps.classList.add('input-field');
         const elementAttributes = {
             type        : "number",
