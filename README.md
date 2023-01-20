@@ -15,6 +15,9 @@ MVP to Track physical activity. A list of exercises with reps.
 5 [ ] - add a complexity, using the date to save the data
 6 [ ] - Make a filter to show results filtered by data
     6.1 [ ] - Make a filter with date's range
-7 [ ] - Build the minimum acceptable HTML page
+7 [✓] - Build the minimum acceptable HTML page
+8 [ ] - Build a Database
+9 [ ] - Exercises as a list
+
 
 ```    

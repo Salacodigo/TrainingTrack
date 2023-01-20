@@ -119,7 +119,6 @@ function setMultipleAttributesonElement(elem, elemAttributes) {
 }
 
 function clearRepsTracking(){
-    console.log("Seguir limpiando");
     routineFormContainer.classList.remove('showing');
     routineFormContainer.classList.add('hidden');
     
@@ -128,34 +127,33 @@ function clearRepsTracking(){
 }
 
 function printHistoricResults( historicData ){
-    console.log("DATA:", historicData)
+    
     const historicResultsContainer = document.getElementById('routine-historic-results');
-
-    const divResults = document.createElement('div');
     
     const dateText = document.createElement('p');
-    const info = historicData['sessionDate'];
+    dateText.setAttribute("class", "routine-date");
+    let info = historicData['sessionDate'];
+    info = new Date(info).toDateString()
     dateText.innerHTML = info;
-    
 
     const sessionExercises = historicData['sessionExercises'];
-    const sessionExercisesText = document.createElement('p');
+
+    const exercisesContainer = document.createElement('div');
+    exercisesContainer.setAttribute("class", "exercise-container");
+
     for(let pos=0; pos < sessionExercises.length; pos++){
-        console.log(
-            "SIRVIO?",
-            sessionExercises[pos].name,
-            sessionExercises[pos].reps
-        )
+        const sessionExercisesText = document.createElement('p');
+        sessionExercisesText.setAttribute("class", "exercise-count");
+
         sessionExercisesText.innerHTML += `
             ${sessionExercises[pos].name} : ${sessionExercises[pos].reps}
         `;
         
+        exercisesContainer.appendChild(sessionExercisesText);
     }
     
-    
-    divResults.appendChild(dateText);
-    divResults.appendChild(sessionExercisesText);
-    historicResultsContainer.appendChild(divResults);
+    historicResultsContainer.appendChild(dateText);
+    historicResultsContainer.appendChild(exercisesContainer);
 
 }
 

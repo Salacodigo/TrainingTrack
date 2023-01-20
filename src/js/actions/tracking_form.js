@@ -43,6 +43,10 @@ function trackingEventListeners(){
 
 function submitTrackingForm(e){
     e.preventDefault();
+    saveRepsCount();
+}
+
+function saveRepsCount(){
     try {
         getTrackingFormValues();
         setInLocalStorage("reps", exerciseListInstance.getList());
@@ -86,6 +90,7 @@ function isEnabledSaveTrackingBtn(){
 }
 
 function saveTracking(){
+    saveRepsCount();
     console.log("Guardar y ver resultados");
     trainningInstance.set(dateInstance.getTodayDate(), exerciseListInstance.getList());
 
