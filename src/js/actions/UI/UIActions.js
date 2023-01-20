@@ -55,6 +55,7 @@ function paintExerciseList( object ){
 
     for(let key in object){
         const liExercise = document.createElement('li');
+        liExercise.setAttribute("class",'exercise-item');
         liExercise.innerHTML = `
             <li>${object[key].name}</li>
         `;

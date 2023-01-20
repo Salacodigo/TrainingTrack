@@ -48,16 +48,15 @@
   border-radius: 15px;
   font-weight: 600;
   font-size: 1rem;
-  border: 0px solid gray;
-  box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid gray;
+  box-shadow: 0 0 15px 7px rgba(0, 0, 0, 0.1);
   transition: 0.2s ease-in-out;
 }
 .form-container .form-design input:focus {
-  box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.06);
+  border: 1px solid white;
+  box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.06);
 }
 .form-container .form-button {
-  appearance: none;
-  -webkit-appearance: none;
   padding: 10px;
   border: none;
   background-color: #3F51B5;
@@ -68,7 +67,35 @@
   transition: 0.2s ease-in-out;
 }
 .form-container .form-button:hover {
+  background-color: #4f65e1;
+}
+.form-container .form-button:active {
   background-color: rgb(5, 194, 5);
+}
+.form-container .exercise-list-container {
+  display: flex;
+  margin: 15px;
+}
+.form-container .exercise-list-container .exercise-list {
+  margin: 5px 0px 15px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  list-style: none;
+  width: 100%;
+  background-color: rgb(246, 246, 246);
+  box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.06);
+  transition: 0.2s ease-in-out;
+}
+.form-container .exercise-list-container .exercise-list .exercise-item {
+  margin: 5px;
+  padding: 5px;
+  width: 200px;
+  text-align: center;
+  border: 1px solid white;
+  border-radius: 5px;
+  box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.06);
 }
 
 * {
