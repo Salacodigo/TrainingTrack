@@ -7,16 +7,17 @@
     <title>Trainning Track</title>
     <link rel="stylesheet" href="./styles/css/index.css">
 </head>
-<body class="p-20">
+<body class="body-text">
     <header>
         <nav></nav>
     </header>
     <main>
-        <h1>Trainnig Track App</h1>
-        <p>Track the progress in your trainning routine</p>
-        <br>
-        <div id="user-register-container">
-            <form id="user-register" action="" class="m-5">
+        <div class="title-container">
+            <h1 class="title" >Trainnig Track App</h1>
+            <p class="subtitle" >Track the progress in your trainning routine</p>
+        </div>
+        <div id="user-register-container" class="form-container">
+            <form id="user-register" action="" class="form-design ">
                 <label for="user-name" class="">
                     <span class="span-style">¿Cómo te llamas?</span>
                     <br>
@@ -24,16 +25,19 @@
                 </label>
             </form>
             <div class="d-flex" id="user-btn-container">
-                <button type="submit" id="user-submit-btn" class="">Agregar ejercicios que haré</button>
+                <button type="submit" id="user-submit-btn" class="form-button">Agregar ejercicios que haré </button>
             </div>
         </div>
-
-        <h2 class="hidden" id="user-name-greeting"></h2>
+        <div class="title-container">
+            <h2 class="hidden" id="user-name-greeting"></h2>
+        </div>
         
-        <div id="exercises-list-register-container" class="hidden vertical">
-            <h2>Registra los ejercicios</h2>
+        <div id="exercises-list-register-container" class="form-container vertical hidden">
+            <div class="title-container">
+                <h2>Registra los ejercicios</h2>
+            </div>
 
-            <form id="exercise-register" action="" class="m-5">
+            <form id="exercise-register" action="" class="form-design ">
                 <label for="exercise" class="">
                     <span class="span-style">Hoy haré:</span>
                     <br>
@@ -41,35 +45,39 @@
                 </label>
             </form>
             <div class="d-flex" id="exercise-btn-container">
-                <button type="submit" id="exercise-submit-btn" class="">Añadir a la rutina</button>
+                <button type="submit" id="exercise-submit-btn" class="form-button">Añadir a la rutina</button>
             </div>
 
-            <h3>Ejercicios para hoy:</h3>
+            <div class="title-container">
+                <h3 class="title">Ejercicios para hoy:</h3>
+            </div>
             <div id="exercise-list-container">
                 <ul id="exercise-list">
                 </ul>
             </div>
             <div class="d-flex" id="trainningSession-btn-container">
-                <button type="button" id="startTrainning-btn" class="" disabled>Empezar Rutina</button>
+                <button type="button" id="startTrainning-btn" class="form-button" disabled>Empezar Rutina</button>
             </div>
 
         </div>
 
-        <div class="vertical hidden" id="routine-tracking-container">
-            <h2>¡A entrenar!</h2>
-            <p>Registra cuantas repeticiones haces por cada ejercicio</p>
+        <div class="form-container vertical hidden" id="routine-tracking-container">
+            <div class="title-container">
+                <h2 class="title">¡A entrenar!</h2>
+                <p class="subtitle">Registra cuantas repeticiones haces por cada ejercicio</p>
+            </div>
 
-            <form id="routine-tracking" action="" class="m-5">
+            <form id="routine-tracking" action="" class="form-design ">
             </form>
 
             <div class="d-flex" id="reps-tracking-container">
-                <button type="submit" id="reps-tracking-btn" class="">guardar</button>
+                <button type="submit" id="reps-tracking-btn" class="form-button">Guardar avance</button>
             </div>
             
-            <br class="m-20">
+            <br class="">
             <h2>Terminar entrenamiento</h2>
             <div class="d-flex" id="save-tracking-container">
-                <button type="button" id="save-tracking-btn" class="">Guardar y ver resultados </button>
+                <button type="button" id="save-tracking-btn" class="form-button">Guardar y ver resultados </button>
             </div>
         </div>
 

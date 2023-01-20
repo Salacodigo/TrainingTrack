@@ -1,0 +1,51 @@
+@import './variables';
+
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    
+    
+    .form-design{
+        width: 80%;
+        font-family: $font-sans;
+        font-size: 1.15rem;
+        
+        input {
+            width: 100%;
+            margin: 12px 0px 20px;
+            padding: 15px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 1.0rem;
+            border: 0px solid gray;
+            box-shadow:0 0 25px 10px rgba(0,0,0,0.1);
+            transition: .2s ease-in-out;
+            
+        }
+        input:focus{
+            box-shadow:0 0 25px 10px rgba(0,0,0,0.06);
+        }
+    }
+
+    .form-button{
+        appearance:none;
+        -webkit-appearance:none;
+
+        padding:10px;
+        border:none;
+        background-color:#3F51B5;
+        color:#fff;
+        font-weight:600;
+        border-radius:5px;
+        width:100%;
+        transition: .2s ease-in-out;
+    }
+    .form-button:hover{
+        background-color: $btn-green;
+
+    }
+
+
+}
+

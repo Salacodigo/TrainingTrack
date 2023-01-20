@@ -1,0 +1,27 @@
+@import './variables';
+
+
+.title-container{
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    width: 80%;
+    justify-items: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px ;
+    
+    .title{
+        text-align: center;
+        width: 100%;
+        font-family: $font-sans;
+        font-size: 2rem;
+    }
+    
+    .subtitle{
+        text-align: end;
+        width: 90%;
+        font-family: $font-mono;
+        font-size: 0.8rem;
+    }
+}
