@@ -119,28 +119,21 @@
 
 #results-dashboard-container {
   margin: 5px auto 10px;
-  border: 1px solid #3F51B5;
-  border-radius: 5px;
   flex-direction: column;
-}
-#results-dashboard-container .title {
-  margin: 10px 0px;
-  text-align: center;
-  width: 100%;
-  font-family: "IBM Plex Sans", sans-serif;
-  font-size: 2rem;
 }
 #results-dashboard-container .results-dashboard {
   display: flex;
   flex-direction: column;
   justify-content: start;
   width: 100%;
+  border: 1px solid #3F51B5;
+  border-radius: 5px;
 }
 #results-dashboard-container .results-dashboard .routine-date {
   font-size: 0.7rem;
 }
 #results-dashboard-container .results-dashboard .exercise-container {
-  font-size: 1rem;
+  font-size: 0.8rem;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -151,6 +144,12 @@
   display: flex;
   padding: 10px;
   width: 100%;
+}
+
+#chartDiv2 {
+  width: 95%;
+  height: 300px;
+  margin: 0 auto;
 }
 
 * {
@@ -182,6 +181,10 @@ body {
 
 .showing {
   display: flex;
+}
+
+.showing-block {
+  display: block;
 }
 
 /*# sourceMappingURL=index.css.map */

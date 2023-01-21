@@ -12,10 +12,7 @@
         <nav></nav>
     </header>
     <main>
-        <div id="chartDiv2" style="width:95%; height:300px; margin:0 auto;"></div>
-        
-
-        <div class="title-container">
+        <div class="title-container" id="appName">
             <h1 class="title" >Training Track App</h1>
             <p class="subtitle" >Track the progress in your training routine</p>
         </div>
@@ -92,8 +89,11 @@
             </div>
         </div>
 
+        <div id="chartDiv2" style="visibility: hidden;"></div>
         <div class="hidden" id="results-dashboard-container">
-            <h2 class="title">Resultados históricos</h2>
+            <div class="title-container">
+                <h2 class="title">Resultados históricos</h2>
+            </div>
             <div class="results-dashboard" id="routine-historic-results">
                 <!-- <p class="routine-date">Fri Jan 20 202</p>
                 <div class="exercise-container">
@@ -101,7 +101,6 @@
                 </div> -->
             </div>
         </div>
-
         
 
 

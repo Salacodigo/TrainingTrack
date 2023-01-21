@@ -51,17 +51,6 @@ let historicData = [
 function renderChart(series){
     JSC.Chart('chartDiv2', {
 		title_label_text: 'Number of squats made per train session',
-        toolbar_items: { 
-            'Line Type': { 
-              type: 'select', 
-              label_style_fontSize: 13, 
-              margin: 5, 
-              items: 'Line,Step,Spline', 
-              events_change: function(val) { 
-                chart.series().options({ type: val }); 
-              } 
-            } 
-          }, 
 		annotations: [{
 			label_text: 'Source: Training App registry',
 			position: 'bottom left',

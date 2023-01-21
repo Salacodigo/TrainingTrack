@@ -4,30 +4,22 @@
 #results-dashboard-container{
 
     margin: 5px auto 10px;
-    border: 1px solid $blue;
-    border-radius: 5px;
     flex-direction: column;
-
-    .title{
-        margin: 10px 0px;
-        text-align: center;
-        width: 100%;
-        font-family: $font-sans;
-        font-size: 2rem;
-    }
-
+    
     .results-dashboard{
         display: flex;
         flex-direction: column;
         justify-content: start;
         width: 100%;
+        border: 1px solid $blue;
+        border-radius: 5px;
 
         .routine-date{
             font-size: 0.7rem;
         }
         
         .exercise-container{
-            font-size: 1rem;
+            font-size: 0.8rem;
             padding: 10px;
             display: flex;
             flex-direction: column;

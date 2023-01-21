@@ -1,5 +1,7 @@
-// User Form Elements
+// App Name and title container
+const appNameContainer = document.getElementById('appName')
 
+// User Form Elements
 const userFormContainer = document.getElementById('user-register-container');
 const userNameGreeting = document.getElementById('user-name-greeting');
 
@@ -27,8 +29,10 @@ function cleanContainer( container ){
 };
 
 
-
 function cleanUserFormUI( name ){
+    appNameContainer.classList.remove('showing');
+    appNameContainer.classList.add('hidden');
+
     userFormContainer.classList.remove('showing');
     userFormContainer.classList.add('hidden');
 
@@ -124,8 +128,15 @@ function clearRepsTracking(){
     routineFormContainer.classList.remove('showing');
     routineFormContainer.classList.add('hidden');
     
+    appNameContainer.classList.remove('hidden');
+    appNameContainer.classList.add('showing');
+
     resultsDashboardContainer.classList.remove('hidden');
     resultsDashboardContainer.classList.add('showing');
+    
+    const graphDiv2 = document.getElementById('chartDiv2');
+    graphDiv2.setAttribute("style", "visibility:visible")
+
 }
 
 function printHistoricResults( historicData ){
