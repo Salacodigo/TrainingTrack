@@ -3,22 +3,26 @@
 
 #routine-tracking{
     
+    display: flex;
+    flex-direction: column;
     margin: 5px auto 10px;
     border-radius: 5px;
-    background-color: rgb(246, 246, 246);
-    box-shadow:0 0 15px 3px rgba(0,0,0,0.06);
+    background-color: $background-day;
 
     label{
         display: flex;
-        margin: 5px auto;
+        flex-direction: row;
+        border: $test;
+        margin: 15px auto;
         align-items: center;
         justify-content: space-between;
-        border: 1px solid white;
+        border: 1px solid transparent;
         border-radius: 5px;
-        box-shadow:0 0 15px 3px rgba(0,0,0,0.06);
+        box-shadow: $neomorphism-focus;
 
         .span-style{
             margin: 5px 20px;
+            font-size: 1rem;
         }
 
         .input-field{
@@ -30,4 +34,17 @@
 
     }
 
+}
+
+
+#save-tracking-btn{
+    background-color: $btn-red;
+}
+
+#save-tracking-btn:hover{
+    background-color: $btn-red-hover;
+}
+
+#save-tracking-btn:active{
+    background-color: $btn-red-active;
 }
