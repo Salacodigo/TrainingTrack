@@ -1,17 +1,12 @@
-import  User  from '../classes/class_user.js'
-
 import {
-    setInLocalStorage
-} from '../storage/function_localStorage.js'
+    sessionInfo
+} from '../index.js';
 
 import {
     cleanUserFormUI,
     showExercisesFormRegisterUI
 } from "../actions/UI/UIActions.js"
 
-
-// User instance
-let userInstance = new User();
 
 
 // Form
@@ -24,7 +19,6 @@ const inputUserName = document.getElementById('user-name');
 
 
 // AddEventListeners
-
 // userEventListeners();
 function userEventListeners(){
     document.addEventListener('DOMContentLoaded', () => {
@@ -44,10 +38,8 @@ function writeDefaultValuesInForm(){
 function submitUserForm(e){
     e.preventDefault();
     try {
-        getUserFormValues();
-        setInLocalStorage("objetoClase", userInstance.getInformation());
-
-        cleanUserFormUI( userInstance.getName() );
+        getUserFormValues();    
+        cleanUserFormUI();
         showExercisesFormRegisterUI();
 
     } catch (error) {
@@ -56,10 +48,12 @@ function submitUserForm(e){
 }
 
 function getUserFormValues(){
+    if( !inputUserName.value ){
+        throw new Error("Debe ingresar el nombre");
+    }
     if( inputUserName.value ){
         let userNameValue = inputUserName.value;
-
-        userInstance.setName( userNameValue );
+        sessionInfo.user.name = userNameValue;
     }
 }
 

@@ -1,3 +1,6 @@
+import { sessionInfo } from '../../index.js';
+
+
 // App Name and title container
 const appNameContainer = document.getElementById('appName')
 
@@ -16,9 +19,6 @@ const resultsDashboardContainer = document.getElementById('results-dashboard-con
 
 
 
-
-
-
 //
 // Functions
 //
@@ -29,7 +29,7 @@ function cleanContainer( container ){
 };
 
 
-function cleanUserFormUI( name ){
+function cleanUserFormUI( ){
     appNameContainer.classList.remove('showing');
     appNameContainer.classList.add('hidden');
 
@@ -39,11 +39,12 @@ function cleanUserFormUI( name ){
     userNameGreeting.classList.remove('hidden');
     userNameGreeting.classList.add('showing');
 
-    printUserName( name );
+    printUserName( );
 }
 
-function printUserName( name ){
-    userNameGreeting.innerHTML = `<span>¡Hola, ${name}! 
+function printUserName( ){
+    let userName = sessionInfo.user.name;
+    userNameGreeting.innerHTML = `<span>¡Hola, ${userName}! 
     </span>`;
 }
 
@@ -53,16 +54,17 @@ function showExercisesFormRegisterUI( ){
 
 }
 
-function paintExerciseList( object ){
+function paintExerciseList( ){
     const exerciseListUl = document.getElementById('exercise-list');
-
     cleanContainer(exerciseListUl);
 
-    for(let key in object){
+    const list = sessionInfo.exerciseList;
+    for(let position in list){
+        let exerciseName = list[position].name;
         const liExercise = document.createElement('li');
         liExercise.setAttribute("class",'exercise-item');
         liExercise.innerHTML = `
-            <li>${object[key].name}</li>
+            <li>${exerciseName}</li>
         `;
         exerciseListUl.appendChild(liExercise);
     }
@@ -76,27 +78,28 @@ function cleanExerciseFormUI(){
     userNameGreeting.classList.add('hidden');
 }
 
-function showRepsTracking( exercisesIntance ){
+function showRepsTracking( ){
 
     routineFormContainer.classList.remove('hidden');
     routineFormContainer.classList.add('showing');
 
-    paintRoutineExercises( exercisesIntance );
-
+    paintRoutineExercises( );
 }
 
-function paintRoutineExercises(exercisesIntance){
+function paintRoutineExercises(){
 
     const formRoutineTracking = document.getElementById('routine-tracking');
-    const exercisesList = exercisesIntance.getList();
 
-    for(let key in exercisesList){
+    const exerciseList = sessionInfo.exerciseList;
+    for(let position in exerciseList){
+        let exerciseName = exerciseList[position].name
+
         const rowlabelExercise = document.createElement('label');
-        rowlabelExercise.setAttribute("for",`${exercisesList[key].id}`);
+        rowlabelExercise.setAttribute("for",`${exerciseName}`);
         
         const spanName = document.createElement('span');
         spanName.classList.add('span-style');
-        spanName.innerHTML = `${exercisesList[key].name}`;
+        spanName.innerHTML = `${exerciseName}`;
         
 
         const inputReps = document.createElement('input');
@@ -104,8 +107,8 @@ function paintRoutineExercises(exercisesIntance){
         inputReps.classList.add('input-field');
         const elementAttributes = {
             type        : "number",
-            name        : `${exercisesList[key].name}`, 
-            id          : `${exercisesList[key].id}`,
+            name        : `${exerciseName}`, 
+            id          : `${exerciseName}`,
             placeholder : 0,
             required    : true,
         }
@@ -115,6 +118,7 @@ function paintRoutineExercises(exercisesIntance){
         rowlabelExercise.appendChild(inputReps);
         formRoutineTracking.appendChild(rowlabelExercise);
     }
+
 
 }
 
@@ -139,34 +143,33 @@ function clearRepsTracking(){
 
 }
 
-function printHistoricResults( historicData ){
+function printHistoricResults( ){
     
-    const historicResultsContainer = document.getElementById('routine-historic-results');
-    
-    const dateText = document.createElement('p');
-    dateText.setAttribute("class", "routine-date");
-    let info = historicData['sessionDate'];
-    info = new Date(info).toDateString()
-    dateText.innerHTML = info;
+    const overallResultsContainer = document.getElementById('routine-historic-results');
 
-    const sessionExercises = historicData['sessionExercises'];
+    const dateInfoContainer = document.createElement('p');
+    dateInfoContainer.setAttribute("class", "routine-date");
+
+    let date = sessionInfo.date.registered;
+    dateInfoContainer.innerHTML = date.toDateString();
 
     const exercisesContainer = document.createElement('div');
     exercisesContainer.setAttribute("class", "exercise-container");
+    const sessionExercisesList = sessionInfo.exerciseList;
 
-    for(let pos=0; pos < sessionExercises.length; pos++){
+    for(let pos=0; pos < sessionExercisesList.length; pos++){
         const sessionExercisesText = document.createElement('p');
         sessionExercisesText.setAttribute("class", "exercise-count");
 
         sessionExercisesText.innerHTML += `
-            ${sessionExercises[pos].name} : ${sessionExercises[pos].reps}
+            ${sessionExercisesList[pos].name} : ${sessionExercisesList[pos].repetitions}
         `;
         
         exercisesContainer.appendChild(sessionExercisesText);
     }
     
-    historicResultsContainer.appendChild(dateText);
-    historicResultsContainer.appendChild(exercisesContainer);
+    overallResultsContainer.appendChild(dateInfoContainer);
+    overallResultsContainer.appendChild(exercisesContainer);
 
 }
 
