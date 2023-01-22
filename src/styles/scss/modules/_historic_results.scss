@@ -5,13 +5,14 @@
 
     margin: 5px auto 10px;
     flex-direction: column;
+    background-color: white;
     
     .results-dashboard{
         display: flex;
         flex-direction: column;
         justify-content: start;
         width: 100%;
-        border: 1px solid $blue;
+        border: 1px solid $btn-black;
         border-radius: 5px;
 
         .routine-date{

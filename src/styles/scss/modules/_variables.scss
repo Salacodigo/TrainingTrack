@@ -1,6 +1,9 @@
 //Variables
 $test: 1px solid red;
 
+// Background colors
+$background-day: #e8e8e8;
+
 //Font families
 $font-mono: 'IBM Plex Mono', monospace;
 $font-sans: 'IBM Plex Sans', sans-serif;
@@ -9,3 +12,18 @@ $font-sans: 'IBM Plex Sans', sans-serif;
 // Colors
 $btn-green: rgb(5, 194, 5);
 $blue: #3F51B5;
+$font-color-principal: #000000de; 
+
+// Form
+
+$neomorphism: inset 4px 4px 12px #c5c5c5, inset -6px -6px 12px #ffffff;
+$neomorphism-focus: 4px 4px 12px #ffffff, -6px -6px 12px #c5c5c5;
+
+// Button
+$btn-black: #00000064;
+$btn-black-active: #000000;
+$btn-black-hover: #000000de;
+
+$btn-red: #7c0000;
+$btn-red-active: #ff0000;
+$btn-red-hover: #e80000de;

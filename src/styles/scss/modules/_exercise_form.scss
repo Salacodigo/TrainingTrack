@@ -6,25 +6,25 @@
     margin: 0px auto;
     
     .exercise-list{
-        margin: 5px 0px 15px;
-        padding: 10px;
+        margin: 5px 0px 5px;
+        padding: 0px;
         display: flex;
         align-items: center;
         flex-direction: column;
         list-style: none;
         width: 100%;
-        background-color: rgb(246, 246, 246);
-        box-shadow:0 0 15px 3px rgba(0,0,0,0.06);
+        background-color: $background-day;        
         transition: .2s ease-in-out;
         
         .exercise-item{
             margin: 5px;
+            font-size: 0.8rem;
             padding: 5px;
             width: 200px;
             text-align: center;
-            border: 1px solid white;
+            border: 1px solid transparent;
             border-radius: 5px;
-            box-shadow:0 0 15px 3px rgba(0,0,0,0.06);
+            box-shadow: $neomorphism-focus;
             
 
         }
