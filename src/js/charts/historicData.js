@@ -5,7 +5,7 @@
    })
    .then(function (text) {
 	let series = csvToSeries(text);
-	renderChart(series);
+	// renderChart(series);
    })
    .catch(function (error) {
       //Something went wrong
@@ -13,8 +13,11 @@
    });
 
 function csvToSeries(text) {
+    console.log(text);
+    console.log({text});
     const lifeExp = 'average_life_expectancy';
 	let dataAsJson = JSC.csv2Json(text);
+    console.log({dataAsJson});
 	let male = [], female = [];
 	dataAsJson.forEach(function (row) {
 		 //add either to male, female, or discard.
@@ -39,39 +42,39 @@ let historicData = [
     {
         name: 'Sentadillas',
         points : [
-            {x:'1', y: 30},
-            {x:'2', y: 35},
-            {x:'3', y: 25},
-            {x:'4', y: 55},
-            {x:'5', y: 30},
-            {x:'6', y: 35},
-            {x:'7', y: 25},
-            {x:'8', y: 55},
-            {x:'9', y: 30},
-            {x:'10', y: 35},
-            {x:'11', y: 25},
-            {x:'12', y: 55},
-            {x:'13', y: 30},
-            {x:'14', y: 35},
-            {x:'15', y: 25},
-            {x:'16', y: 55},
-            {x:'17', y: 30},
-            {x:'18', y: 35},
-            {x:'19', y: 25},
-            {x:'20', y: 55},
-            {x:'21', y: 30},
-            {x:'22', y: 35},
-            {x:'23', y: 25},
-            {x:'24', y: 55},
+            {x:'January 2023', y: 20},
+            
         ]
     }
 ]
 
+import { sessionInfo } from '../index.js';
+
+
+let sessionData = [];
+
+function prepareData(index = 0){
+    sessionData = [
+        {
+            name: sessionInfo.exerciseList[index].name,
+            points: [
+                {
+                    x: JSC.formatDate(sessionInfo.date.registered, 'Y'),
+                    y: sessionInfo.exerciseList[index].repetitions
+                },                
+            ]
+        }
+    ]
+    renderChart(sessionData);
+}
+
 
 function renderChart(series){
+    let exerciseName = series[0].name;
+
     JSC.Chart('chartDiv2', {
         type: 'column',
-		title_label_text: 'Number of squats per  session',
+		title_label_text: `Numero de ${exerciseName} por sesión`,
 		annotations: [{
 			label_text: 'Source: Training App Registry',
 			position: 'bottom right',
@@ -86,6 +89,9 @@ function renderChart(series){
 	});
 }
 
-renderChart(historicData);
 
 
+
+export {
+    prepareData
+}

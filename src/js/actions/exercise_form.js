@@ -1,19 +1,10 @@
-import  Exercises  from '../classes/class_exercises.js';
-
-import {
-    setInLocalStorage,
-} from '../storage/function_localStorage.js';
-
+import { sessionInfo } from '../index.js';
 import {
     paintExerciseList,
     cleanExerciseFormUI,
     showRepsTracking
 } from "../actions/UI/UIActions.js"
 
-
-
-// Exercises instance
-let exerciseListInstance = new Exercises();
 
 
 // Form
@@ -26,7 +17,6 @@ const inputExerciseName = document.getElementById('exercise-name');
 
 
 // AddEventListeners
-
 // exerciseEventListeners();
 function exerciseEventListeners(){
     document.addEventListener('DOMContentLoaded', () => {
@@ -41,15 +31,14 @@ function exerciseEventListeners(){
 
 // Functions
 function writeDefaultValuesInExerciseForm(){
-    inputExerciseName.value = "Sentadilla";
+    inputExerciseName.value = "Sentadillas";
 }
 
 function submitExerciseForm(e){
     e.preventDefault();
     try {
         getExerciseFormValues();
-        setInLocalStorage("ejercicio", exerciseListInstance.getList());
-        paintExerciseList(exerciseListInstance.getList());
+        paintExerciseList();
         exerciseForm.reset();
         isEnabledStartTrainningBtn();
 
@@ -62,25 +51,28 @@ function getExerciseFormValues(){
     if( !inputExerciseName.value ){
         throw new Error("Debe ingresar un nombre de ejercicio");
     }
-    let exerciseNameValue = inputExerciseName.value;
-    exerciseListInstance.set( exerciseNameValue );
+    let exerciseObject = {
+        id: inputExerciseName.value,
+        name: inputExerciseName.value,
+    };
+    sessionInfo.exerciseList.push(exerciseObject);
+    sessionInfo.date.created = new Date();
+
 }
 
 function isEnabledStartTrainningBtn(){
-    const exerciseList = document.getElementById('exercise-list');
-    
-    (exerciseList.firstChild) 
+    const isEnabled = sessionInfo.exerciseList.length > 0;
+    (isEnabled) 
         ? startTrainningBtn.disabled = false
         : startTrainningBtn.disabled = true
 }
 
 function submitExerciseList(){
     cleanExerciseFormUI();
-    showRepsTracking( exerciseListInstance );
+    showRepsTracking( );
 }
 
 
 export { 
-    exerciseListInstance,
     exerciseEventListeners
 }

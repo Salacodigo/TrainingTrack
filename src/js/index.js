@@ -1,9 +1,3 @@
-// Trainning classes
-import  Exercises  from "./classes/class_exercises.js";
-import  Dates  from "./classes/class_date.js";
-import  TrainingSession  from "./classes/class_trainingSession.js";
-
-
 // Action Classes
 import {
     userEventListeners
@@ -15,10 +9,35 @@ import {
     trackingEventListeners
 } from "../js/actions/tracking_form.js"
 
+
+let sessionInfo = {
+    date : {
+        created: null,
+        modified: null,
+        registered: null,
+    },
+    user : {
+        name: "Guest",
+    },
+    exerciseList : [
+        /*
+        {
+            id : "Exercise-not-set",
+            name: "Exercise-not-set",
+            repetitions: 0,
+        },
+        */
+    ]
+}
+
+
+// Functions
 console.log("Iniciando...");
 userEventListeners();
 exerciseEventListeners();
 trackingEventListeners();
-console.log("Ejecutandose");
+console.log("Ejecutandose...");
 
-
+export {
+    sessionInfo
+}

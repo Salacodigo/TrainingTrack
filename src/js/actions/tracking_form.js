@@ -1,18 +1,11 @@
-import  Exercises  from '../classes/class_exercises.js';
-import  Dates  from '../classes/class_date.js';
-import  TrainingSession from '../classes/class_trainingSession.js';
-import  ExercTrainingSessionises  from '../classes/class_trainingSession.js';
-
-import {
-    setInLocalStorage,
-} from '../storage/function_localStorage.js';
-import {
-    exerciseListInstance
-} from "./exercise_form.js"
+import { sessionInfo } from '../index.js';
 import {
     clearRepsTracking,
     printHistoricResults
 } from "../actions/UI/UIActions.js"
+import {
+    prepareData
+} from '../charts/historicData.js'
 
 
 // Form
@@ -21,13 +14,7 @@ const trackingSubmitButton = document.getElementById('reps-tracking-btn');
 const saveTrackingBtn = document.getElementById('save-tracking-btn');
 
 
-// Instances
-let dateInstance = new Dates();
-let trainningInstance = new TrainingSession();
-
-
 // AddEventListeners
-
 // trackingEventListeners();
 function trackingEventListeners(){
     document.addEventListener('DOMContentLoaded', () => {
@@ -38,9 +25,9 @@ function trackingEventListeners(){
     })
 }
 
-
+//
 // Functions
-
+//
 function submitTrackingForm(e){
     e.preventDefault();
     saveRepsCount();
@@ -49,7 +36,7 @@ function submitTrackingForm(e){
 function saveRepsCount(){
     try {
         getTrackingFormValues();
-        setInLocalStorage("reps", exerciseListInstance.getList());
+        sessionInfo.date.modified = new Date();
         isEnabledSaveTrackingBtn();
         console.log("Se ha segistrado el numero de repeticiones")
     } catch (error) {
@@ -57,28 +44,29 @@ function saveRepsCount(){
     }
 }
 
-function getTrackingFormValues(){
-    const formTagElement = document.getElementById("routine-tracking")
+function getTrackingFormValues(){    
+    const trackingExerciseForm = document.getElementById("routine-tracking")
 
-    if( !formTagElement.children ){
+    if( !trackingExerciseForm.children ){
         throw new Error("Debe ingresar un numero de repeticiones");
     }
 
-    const numberOfExercises = formTagElement.childElementCount;
+    let sessionExercises = sessionInfo.exerciseList;
+    let exercisesTrackedQuantity = trackingExerciseForm.childElementCount;
 
-    for(let element= 0; element < numberOfExercises; element++){
+    for(let pos= 0; pos < exercisesTrackedQuantity; pos++){
+        
+        let exerciseId = trackingExerciseForm.children[pos].children[1].getAttribute('id');
 
-        const repsPerExercise = {
-            id      : formTagElement.children[element].children[1].getAttribute('id'),
-            name    : formTagElement.children[element].children[1].getAttribute('name'),
-            value   : formTagElement.children[element].children[1].value
+        let exerciseReps = Number(trackingExerciseForm.children[pos].children[1].value);
 
+        for(let pos in sessionExercises){
+            let sessionExerciseId = sessionExercises[pos].id;
+            if(sessionExerciseId == exerciseId){
+                sessionExercises[pos].repetitions = exerciseReps            
+            }
         }
-        
-        exerciseListInstance.assignReps(repsPerExercise['id'], repsPerExercise['value'])
-        
     }
-    
 }
 
 function isEnabledSaveTrackingBtn(){
@@ -92,10 +80,10 @@ function isEnabledSaveTrackingBtn(){
 function saveTracking(){
     saveRepsCount();
     console.log("Guardar y ver resultados");
-    trainningInstance.set(dateInstance.getTodayDate(), exerciseListInstance.getList());
-
+    sessionInfo.date.registered = new Date();
     clearRepsTracking();
-    printHistoricResults(trainningInstance.get('sessionId1'));
+    prepareData();
+    printHistoricResults();
 }
 
 
