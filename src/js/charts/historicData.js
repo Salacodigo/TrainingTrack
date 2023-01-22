@@ -43,6 +43,26 @@ let historicData = [
             {x:'2', y: 35},
             {x:'3', y: 25},
             {x:'4', y: 55},
+            {x:'5', y: 30},
+            {x:'6', y: 35},
+            {x:'7', y: 25},
+            {x:'8', y: 55},
+            {x:'9', y: 30},
+            {x:'10', y: 35},
+            {x:'11', y: 25},
+            {x:'12', y: 55},
+            {x:'13', y: 30},
+            {x:'14', y: 35},
+            {x:'15', y: 25},
+            {x:'16', y: 55},
+            {x:'17', y: 30},
+            {x:'18', y: 35},
+            {x:'19', y: 25},
+            {x:'20', y: 55},
+            {x:'21', y: 30},
+            {x:'22', y: 35},
+            {x:'23', y: 25},
+            {x:'24', y: 55},
         ]
     }
 ]
@@ -50,10 +70,11 @@ let historicData = [
 
 function renderChart(series){
     JSC.Chart('chartDiv2', {
-		title_label_text: 'Number of squats made per train session',
+        type: 'column',
+		title_label_text: 'Number of squats per  session',
 		annotations: [{
-			label_text: 'Source: Training App registry',
-			position: 'bottom left',
+			label_text: 'Source: Training App Registry',
+			position: 'bottom right',
 		}],
         // legend_template: '%icon,%name',
         legend_visible: false,

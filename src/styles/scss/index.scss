@@ -25,6 +25,8 @@ body{
     width: 100%;
     min-width: 320px;
     max-width: 768px;
+    background-color: $background-day;
+    color: $font-color-principal;
 }
 
 *:focus {outline:none !important}
