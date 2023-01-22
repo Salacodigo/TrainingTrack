@@ -5,23 +5,24 @@
 
     margin: 5px auto 10px;
     flex-direction: column;
-    background-color: white;
+    
     
     .results-dashboard{
         display: flex;
         flex-direction: column;
         justify-content: start;
         width: 100%;
-        border: 1px solid $btn-black;
         border-radius: 5px;
+        box-shadow: $neomorphism;
 
         .routine-date{
+            margin: 2px auto;
             font-size: 0.7rem;
         }
         
         .exercise-container{
             font-size: 0.8rem;
-            padding: 10px;
+            padding: 5px;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -29,7 +30,7 @@
             
             .exercise-count{
                 display: flex;
-                padding: 10px;
+                padding: 7px;
                 width: 100%;
     
             }

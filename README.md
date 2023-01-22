@@ -19,8 +19,9 @@ There's a list to things i would like to implement to the project
     6.1 [ ] - Make a filter with date's range
 7  [✓] - Build the minimum acceptable HTML page
 8  [ ] - Build a Database
-9  [ ] - Exercises as a list
+9  [✓] - Exercises as a list
 10 [ ] - Historic Data presented in charts
+11 [ ] - Present the chart based on the type of exercise. User can select the type of exercise
 
 
 ```    
