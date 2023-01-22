@@ -80,6 +80,7 @@
   margin: 10px auto 0px;
 }
 .form-container .form-design {
+  -webkit-appearance: none;
   width: 80%;
   font-family: "IBM Plex Sans", sans-serif;
   font-size: 0.7rem;
