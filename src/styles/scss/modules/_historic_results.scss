@@ -14,6 +14,8 @@
         width: 100%;
         border-radius: 5px;
         box-shadow: $neomorphism;
+        height: 300px;
+        overflow-y: scroll;
 
         .routine-date{
             margin: 2px auto;

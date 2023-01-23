@@ -1,4 +1,7 @@
-import { sessionInfo } from '../../index.js';
+import { 
+    sessionInfo,
+    overallSessionsInfo
+} from '../../index.js';
 
 
 // App Name and title container
@@ -145,30 +148,42 @@ function clearRepsTracking(){
 function printHistoricResults( ){
     
     const overallResultsContainer = document.getElementById('routine-historic-results');
+    let dateInfoContainer = null;
+    let exercisesContainer = null;
 
-    const dateInfoContainer = document.createElement('p');
-    dateInfoContainer.setAttribute("class", "routine-date");
+    for(let pos in overallSessionsInfo){
+        console.log(overallSessionsInfo);
 
-    let date = sessionInfo.date.registered;
-    dateInfoContainer.innerHTML = date.toDateString();
+        let session = overallSessionsInfo[pos];
 
-    const exercisesContainer = document.createElement('div');
-    exercisesContainer.setAttribute("class", "exercise-container");
-    const sessionExercisesList = sessionInfo.exerciseList;
-
-    for(let pos=0; pos < sessionExercisesList.length; pos++){
-        const sessionExercisesText = document.createElement('p');
-        sessionExercisesText.setAttribute("class", "exercise-count");
-
-        sessionExercisesText.innerHTML += `
-            ${sessionExercisesList[pos].name} : ${sessionExercisesList[pos].repetitions}
-        `;
-        
-        exercisesContainer.appendChild(sessionExercisesText);
+        if(session.user.name == sessionInfo.user.name){
+    
+            dateInfoContainer = document.createElement('p');
+            dateInfoContainer.setAttribute("class", "routine-date");
+            
+            let date = new Date(session.date.registered);
+            dateInfoContainer.innerHTML = date.toDateString();
+            
+            exercisesContainer = document.createElement('div');
+            exercisesContainer.setAttribute("class", "exercise-container");
+                
+            let sessionExercisesList = session.exerciseList;
+    
+            for(let pos=0; pos < sessionExercisesList.length; pos++){
+                const sessionExercisesText = document.createElement('p');
+                sessionExercisesText.setAttribute("class", "exercise-count");
+                
+                sessionExercisesText.innerHTML += `
+                ${sessionExercisesList[pos].name} : ${sessionExercisesList[pos].repetitions}
+                `;
+                
+                exercisesContainer.appendChild(sessionExercisesText);
+            }
+        }
+        overallResultsContainer.appendChild(dateInfoContainer);
+        overallResultsContainer.appendChild(exercisesContainer);
     }
     
-    overallResultsContainer.appendChild(dateInfoContainer);
-    overallResultsContainer.appendChild(exercisesContainer);
 }
 
 

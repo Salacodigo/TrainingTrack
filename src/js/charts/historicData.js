@@ -19,7 +19,7 @@ function prepareData(index = 0){
         if(session.user.name == sessionInfo.user.name){
             sessionData[0].points.push(
                 {
-                    x: JSC.formatDate(session.date.registered, 'ymd hh:mm'),
+                    x: JSC.formatDate(session.date.registered, 'ymd hh:mm:ss'),
                     y: session.exerciseList[index].repetitions
                 }
             )
