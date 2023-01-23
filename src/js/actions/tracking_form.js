@@ -1,4 +1,7 @@
-import { sessionInfo } from '../index.js';
+import { 
+    sessionInfo,
+    overallSessionsInfo
+} from '../index.js';
 import {
     clearRepsTracking,
     printHistoricResults
@@ -6,6 +9,9 @@ import {
 import {
     prepareData
 } from '../charts/historicData.js'
+import {
+    setInLocalStorage
+} from '../storage/function_localStorage.js'
 
 
 // Form
@@ -21,7 +27,6 @@ function trackingEventListeners(){
         trackingForm.addEventListener('submit', submitTrackingForm);
         trackingSubmitButton.addEventListener('click', submitTrackingForm);
         saveTrackingBtn.addEventListener('click', saveTracking)
-        
     })
 }
 
@@ -80,10 +85,19 @@ function isEnabledSaveTrackingBtn(){
 function saveTracking(){
     saveRepsCount();
     console.log("Guardar y ver resultados");
-    sessionInfo.date.registered = new Date();
+
+    saveDatainLocalStorage();
+    
     clearRepsTracking();
     prepareData();
     printHistoricResults();
+}
+
+
+function saveDatainLocalStorage(){
+    sessionInfo.date.registered = new Date();
+    overallSessionsInfo.push(sessionInfo);
+    setInLocalStorage('sessionsHistoricData',overallSessionsInfo)
 }
 
 
