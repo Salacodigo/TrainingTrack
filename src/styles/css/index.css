@@ -73,22 +73,22 @@
   font-size: 1rem;
 }
 #routine-tracking label .input-field {
-  margin: 5px 20px;
+  margin: 5px 15px;
   height: 25px;
-  width: 100px;
+  width: 80px;
   box-shadow: 0 0 0px 0px rgba(0, 0, 0, 0);
 }
 
 #save-tracking-btn {
-  background-color: #7c0000;
+  background-color: #e00101;
 }
 
 #save-tracking-btn:hover {
-  background-color: rgba(232, 0, 0, 0.8705882353);
+  background-color: rgba(255, 0, 0, 0.8705882353);
 }
 
 #save-tracking-btn:active {
-  background-color: #ff0000;
+  background-color: #ff9100;
 }
 
 .form-container {
@@ -163,6 +163,8 @@
   width: 100%;
   border-radius: 5px;
   box-shadow: inset 4px 4px 12px #c5c5c5, inset -6px -6px 12px #ffffff;
+  height: 300px;
+  overflow-y: scroll;
 }
 #results-dashboard-container .results-dashboard .routine-date {
   margin: 2px auto;
