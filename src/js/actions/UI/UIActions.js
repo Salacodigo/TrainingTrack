@@ -51,7 +51,6 @@ function printUserName( ){
 function showExercisesFormRegisterUI( ){
     exerciseFormContainer.classList.remove('hidden');
     exerciseFormContainer.classList.add('showing');
-
 }
 
 function paintExerciseList( ){
@@ -170,7 +169,6 @@ function printHistoricResults( ){
     
     overallResultsContainer.appendChild(dateInfoContainer);
     overallResultsContainer.appendChild(exercisesContainer);
-
 }
 
 

@@ -3,7 +3,7 @@ function setInLocalStorage( key, jsonObject ){
     try {
         localStorage.setItem( key, object);
     } catch (error) {
-        console.log( error );
+        throw new error(error);
     }
 }
 

@@ -1,70 +1,31 @@
-/*
- fetch('https://data.cdc.gov/resource/w9j2-ggv5.csv')
-   .then(function (response) {
-      return response.text();
-   })
-   .then(function (text) {
-	let series = csvToSeries(text);
-	// renderChart(series);
-   })
-   .catch(function (error) {
-      //Something went wrong
-      console.log(error);
-   });
+import { 
+    sessionInfo,
+    overallSessionsInfo
+ } from '../index.js';
 
-function csvToSeries(text) {
-    console.log(text);
-    console.log({text});
-    const lifeExp = 'average_life_expectancy';
-	let dataAsJson = JSC.csv2Json(text);
-    console.log({dataAsJson});
-	let male = [], female = [];
-	dataAsJson.forEach(function (row) {
-		 //add either to male, female, or discard.
-		if (row.race === 'All Races') {
-			if (row.sex === 'Male') {
-				male.push({x: row.year, y: row[lifeExp]});
-			} else if (row.sex === 'Female') {
-				female.push({x: row.year, y: row[lifeExp]});
-			}
-		}
-	});
-    console.log([male, female]);
-
-    return [
-        {name: 'Male', points: male},
-        {name: 'Female', points: female}
-    ];
-}
-*/
-
-let historicData = [
-    {
-        name: 'Sentadillas',
-        points : [
-            {x:'January 2023', y: 20},
-            
-        ]
-    }
-]
-
-import { sessionInfo } from '../index.js';
-
-
-let sessionData = [];
 
 function prepareData(index = 0){
-    sessionData = [
+    let exerciseName = sessionInfo.exerciseList[index].name;
+
+    let sessionData = [
         {
-            name: sessionInfo.exerciseList[index].name,
-            points: [
-                {
-                    x: JSC.formatDate(sessionInfo.date.registered, 'Y'),
-                    y: sessionInfo.exerciseList[index].repetitions
-                },                
-            ]
+            name: exerciseName,
+            points: [],
         }
     ]
+
+    for(let pos in overallSessionsInfo){
+        let session = overallSessionsInfo[pos];
+        if(session.user.name == sessionInfo.user.name){
+            sessionData[0].points.push(
+                {
+                    x: JSC.formatDate(session.date.registered, 'ymd hh:mm'),
+                    y: session.exerciseList[index].repetitions
+                }
+            )
+        }
+    }
+
     renderChart(sessionData);
 }
 
