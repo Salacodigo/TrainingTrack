@@ -4,6 +4,7 @@ import {
 } from '../index.js';
 import {
     clearRepsTracking,
+    printExercisesPracticedButtons,
     printHistoricResults
 } from "../actions/UI/UIActions.js"
 import {
@@ -89,7 +90,8 @@ function saveTracking(){
     saveDatainLocalStorage();
     
     clearRepsTracking();
-    prepareData();
+    prepareData(sessionInfo.exerciseList[0].name);
+    printExercisesPracticedButtons();
     printHistoricResults();
 }
 

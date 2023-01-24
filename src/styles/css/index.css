@@ -163,7 +163,7 @@
   width: 100%;
   border-radius: 5px;
   box-shadow: inset 4px 4px 12px #c5c5c5, inset -6px -6px 12px #ffffff;
-  height: 300px;
+  max-height: 300px;
   overflow-y: scroll;
 }
 #results-dashboard-container .results-dashboard .routine-date {

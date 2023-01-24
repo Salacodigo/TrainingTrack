@@ -2,6 +2,11 @@ import {
     sessionInfo,
     overallSessionsInfo
 } from '../../index.js';
+import {
+    prepareData,
+    exercisesRegistered
+} from '../../charts/historicData.js';
+
 
 
 // App Name and title container
@@ -145,14 +150,39 @@ function clearRepsTracking(){
 
 }
 
+function printExercisesPracticedButtons (){
+    const buttonExercise = document.getElementById('results-dashboard-button');
+
+    exercisesRegistered.forEach(
+        exercise => {
+
+            
+            let button = document.createElement('button');
+            button.innerHTML=`${exercise}`;
+            button.setAttribute("id",`${exercise}`);
+            button.setAttribute("type","submit");
+            button.classList.add("filterBtn");
+
+            button.addEventListener('click', filterChartByTypeOfExercise);
+            buttonExercise.appendChild(button)
+        }
+    )
+}
+
+function filterChartByTypeOfExercise(e){
+    e.preventDefault();
+    prepareData(e.target.id);
+}
+
+
 function printHistoricResults( ){
-    
+
     const overallResultsContainer = document.getElementById('routine-historic-results');
+    const selectExerciseContainer = document.getElementById('select-exercise-container');
     let dateInfoContainer = null;
     let exercisesContainer = null;
 
     for(let pos in overallSessionsInfo){
-        console.log(overallSessionsInfo);
 
         let session = overallSessionsInfo[pos];
 
@@ -194,5 +224,6 @@ export {
     cleanExerciseFormUI,
     showRepsTracking,
     clearRepsTracking,
+    printExercisesPracticedButtons,
     printHistoricResults
 }
