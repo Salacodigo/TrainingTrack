@@ -59,7 +59,6 @@ function loadHistoricData(){
             return;
         }
         overallSessionsInfo = overallSessionsLocalStorage;
-        console.log({overallSessionsInfo});
         
     } catch (error) {
         console.log(error);

@@ -3,30 +3,46 @@ import {
     overallSessionsInfo
  } from '../index.js';
 
+ let sessionDataPrinted = [];
+ let exercisesRegistered = [];
+function prepareData(pExerciseName){
+    pExerciseName = pExerciseName.toLowerCase();
 
-function prepareData(index = 0){
-    let exerciseName = sessionInfo.exerciseList[index].name;
-
-    let sessionData = [
+    sessionDataPrinted = [
         {
-            name: exerciseName,
+            name: pExerciseName,
             points: [],
         }
     ]
 
-    for(let pos in overallSessionsInfo){
-        let session = overallSessionsInfo[pos];
-        if(session.user.name == sessionInfo.user.name){
-            sessionData[0].points.push(
-                {
-                    x: JSC.formatDate(session.date.registered, 'ymd hh:mm:ss'),
-                    y: session.exerciseList[index].repetitions
-                }
-            )
-        }
-    }
+    overallSessionsInfo.forEach(
+        registeredSession => {
+            if(registeredSession.user.name == sessionInfo.user.name){
+                registeredSession.exerciseList.forEach(
+                    exercise => {
+                        let exerciseName = exercise.id.toLowerCase();
 
-    renderChart(sessionData);
+                        if (!exercisesRegistered.includes(exerciseName)){
+                            exercisesRegistered.push(exerciseName);
+                        }
+                        if( exerciseName == pExerciseName){
+
+                            sessionDataPrinted[0].points.push(
+                                {
+                                    x: JSC.formatDate(registeredSession.date.registered, 'ymd hh:mm:ss'),
+                                    y: exercise.repetitions
+                                }
+                            )
+                            
+                        }
+                    }
+                )
+            }
+        }
+    )
+
+
+    renderChart(sessionDataPrinted);
 }
 
 
@@ -54,5 +70,6 @@ function renderChart(series){
 
 
 export {
-    prepareData
+    exercisesRegistered,
+    prepareData,
 }
