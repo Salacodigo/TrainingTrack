@@ -51,7 +51,7 @@ function renderChart(series){
 
     JSC.Chart('chartDiv2', {
         type: 'column',
-		title_label_text: `Numero de ${exerciseName} por sesión`,
+		title_label_text: `Repeticiones de ${exerciseName} por sesión`,
 		annotations: [{
 			label_text: 'Source: Training App Registry',
 			position: 'bottom right',

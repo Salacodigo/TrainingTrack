@@ -13,7 +13,7 @@
         -webkit-appearance: none;
         width: 80%;
         font-family: $font-sans;
-        font-size: 0.7rem;
+        font-size: 0.8rem;
         
         label {
             display: flex;
@@ -23,12 +23,12 @@
             span{
                 width: 100%;
                 position: relative;
-                left: 40px;
+                left: 0px;
                 
             }
 
             input {
-                border: none;
+                border: 1px solid transparent;
                 margin: 5px auto 10px;
                 border-radius: 15px;
                 padding: 10px 20px;
@@ -52,13 +52,13 @@
         width: 100%;
 
         .form-button{
-            padding:5px;
-            margin: 0px auto 20px;
+            padding: 5px;
+            margin: 0px auto;
             background-color:$btn-black;
             border: 1px solid transparent;
             color: $background-day;
-            font-weight:500;
-            border-radius:5px;
+            font-weight: 500;
+            border-radius: 5px;
             width:70%;
             transition: .2s ease-in-out;
             

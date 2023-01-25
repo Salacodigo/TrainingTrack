@@ -108,20 +108,35 @@ function paintRoutineExercises(){
         spanName.classList.add('span-style');
         spanName.innerHTML = `${exerciseName}`;
         
+        /*
+        const inputSeries = document.createElement('input');
+        inputSeries.defaultValue=0;
+        inputSeries.classList.add('input-field');
+        const elementAttributesSeries = {
+            type        : "number",
+            name        : `${exerciseName}+series`, 
+            id          : `${exerciseName}+series`,
+            placeholder : 0,
+            required    : true,
+        }
+        setMultipleAttributesonElement(inputSeries, elementAttributesSeries);
+        */
+
 
         const inputReps = document.createElement('input');
         inputReps.defaultValue=0;
         inputReps.classList.add('input-field');
-        const elementAttributes = {
+        const elementAttributesReps = {
             type        : "number",
             name        : `${exerciseName}`, 
             id          : `${exerciseName}`,
             placeholder : 0,
             required    : true,
         }
-        setMultipleAttributesonElement(inputReps, elementAttributes);
+        setMultipleAttributesonElement(inputReps, elementAttributesReps);
 
         rowlabelExercise.appendChild(spanName);
+        // rowlabelExercise.appendChild(inputSeries);
         rowlabelExercise.appendChild(inputReps);
         formRoutineTracking.appendChild(rowlabelExercise);
     }
@@ -153,25 +168,34 @@ function clearRepsTracking(){
 function printExercisesPracticedButtons (){
     const buttonExercise = document.getElementById('results-dashboard-button');
 
+    // const labelExercise = document.createElement('label');
+    // labelExercise.setAttribute("for",'exercise-result-select');
+
+    const exerciseSelect = document.createElement('select');
+    const exerciseSelectAttributes = {
+        id          : 'exercise-result-select',
+        name        : 'exercise-result-select', 
+    }
+    setMultipleAttributesonElement(exerciseSelect, exerciseSelectAttributes);
+    exerciseSelect.addEventListener('change', filterChartByTypeOfExercise);
+
     exercisesRegistered.forEach(
         exercise => {
-
-            
-            let button = document.createElement('button');
-            button.innerHTML=`${exercise}`;
-            button.setAttribute("id",`${exercise}`);
-            button.setAttribute("type","submit");
-            button.classList.add("filterBtn");
-
-            button.addEventListener('click', filterChartByTypeOfExercise);
-            buttonExercise.appendChild(button)
+            let option = document.createElement('option');
+            option.innerHTML=`${exercise}`;
+            option.classList.add("filterBtn");
+            option.setAttribute("value",`${exercise}`);
+            exerciseSelect.appendChild(option)
         }
-    )
-}
+        )
+        buttonExercise.appendChild(exerciseSelect)
+    }
 
-function filterChartByTypeOfExercise(e){
-    e.preventDefault();
-    prepareData(e.target.id);
+function filterChartByTypeOfExercise(){
+    const exerciseSelectList = document.getElementById('exercise-result-select');
+    let exerciseSelected = exerciseSelectList.value;
+    prepareData(exerciseSelected);
+
 }
 
 
