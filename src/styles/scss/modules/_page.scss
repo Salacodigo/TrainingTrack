@@ -8,13 +8,18 @@
     align-items: center;
     margin: 10px auto;
     
-    .title{
-        width: 100%;
-        min-width: 280px;
-        margin: 0px auto 10px;
+    #title-principal{
         text-align: center;
+        margin: 0px auto 10px;
+    }
+    
+    .title{
+        width: 80%;
+        min-width: 280px;
+        margin: 0px auto;
+        text-align: start;
         font-family: $font-sans;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
     
     .subtitle{

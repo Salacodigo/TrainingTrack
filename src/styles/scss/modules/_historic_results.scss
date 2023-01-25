@@ -1,5 +1,19 @@
 @import './variables';
 
+#results-dashboard-button{
+    display: flex;
+    max-width: 80%;
+    overflow-x: scroll;
+
+    .filterBtn{
+        margin: 5px;
+        max-width: 100px;
+        padding: 5px;
+        font-size: 1.0 rem;
+        cursor: pointer;
+    }
+}
+
 
 #results-dashboard-container{
 

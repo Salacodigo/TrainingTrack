@@ -7,13 +7,17 @@
   align-items: center;
   margin: 10px auto;
 }
-.title-container .title {
-  width: 100%;
-  min-width: 280px;
-  margin: 0px auto 10px;
+.title-container #title-principal {
   text-align: center;
+  margin: 0px auto 10px;
+}
+.title-container .title {
+  width: 80%;
+  min-width: 280px;
+  margin: 0px auto;
+  text-align: start;
   font-family: "IBM Plex Sans", sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 .title-container .subtitle {
   text-align: start;
@@ -49,33 +53,39 @@
   box-shadow: 4px 4px 12px #ffffff, -6px -6px 12px #c5c5c5;
 }
 
+#exercise-btn-container {
+  margin-bottom: 40px;
+}
+
 #routine-tracking {
   display: flex;
   flex-direction: column;
   margin: 5px auto 10px;
   border-radius: 5px;
   background-color: #e8e8e8;
+  width: 100%;
 }
 #routine-tracking label {
   display: flex;
   flex-direction: row;
-  width: 80%;
-  border: 1px solid red;
-  margin: 15px auto;
+  width: 90%;
+  margin: 5px auto;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   border: 1px solid transparent;
   border-radius: 5px;
   box-shadow: 4px 4px 12px #ffffff, -6px -6px 12px #c5c5c5;
 }
 #routine-tracking label .span-style {
-  margin: 5px 20px;
   font-size: 1rem;
+  width: 40%;
+  padding: 0px 10px;
 }
 #routine-tracking label .input-field {
-  margin: 5px 15px;
   height: 25px;
-  width: 80px;
+  width: 30%;
+  padding: 0 2% 0 6%;
+  text-align: center;
   box-shadow: 0 0 0px 0px rgba(0, 0, 0, 0);
 }
 
@@ -91,6 +101,10 @@
   background-color: #ff9100;
 }
 
+#reps-tracking-container {
+  margin-bottom: 30px;
+}
+
 .form-container {
   -webkit-appearance: none;
   display: flex;
@@ -102,7 +116,7 @@
   -webkit-appearance: none;
   width: 80%;
   font-family: "IBM Plex Sans", sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
 }
 .form-container .form-design label {
   display: flex;
@@ -112,10 +126,10 @@
 .form-container .form-design label span {
   width: 100%;
   position: relative;
-  left: 40px;
+  left: 0px;
 }
 .form-container .form-design label input {
-  border: none;
+  border: 1px solid transparent;
   margin: 5px auto 10px;
   border-radius: 15px;
   padding: 10px 20px;
@@ -135,7 +149,7 @@
 }
 .form-container .form-button-container .form-button {
   padding: 5px;
-  margin: 0px auto 20px;
+  margin: 0px auto;
   background-color: rgba(0, 0, 0, 0.3921568627);
   border: 1px solid transparent;
   color: #e8e8e8;
@@ -150,6 +164,19 @@
 }
 .form-container .form-button-container .form-button:active {
   background-color: #000000;
+}
+
+#results-dashboard-button {
+  display: flex;
+  max-width: 80%;
+  overflow-x: scroll;
+}
+#results-dashboard-button .filterBtn {
+  margin: 5px;
+  max-width: 100px;
+  padding: 5px;
+  font-size: 1 rem;
+  cursor: pointer;
 }
 
 #results-dashboard-container {

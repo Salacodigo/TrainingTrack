@@ -13,7 +13,7 @@
     </header>
     <main>
         <div class="title-container" id="appName">
-            <h1 class="title" >Training Track App</h1>
+            <h1 class="title" id="title-principal" >Training Track App</h1>
             <p class="subtitle" >Track the progress in your training routine</p>
         </div>
         <div id="user-register-container" class="form-container">
@@ -39,7 +39,6 @@
             <form id="exercise-register" action="" class="form-design ">
                 <label for="exercise" class="">
                     <span class="span-style">Hoy entrenaré:</span>
-                    <br>
                     <input class="input-field" type="text" name="" id="exercise-name" placeholder="Nombre del ejercicio" maxlength="25" required>
                 </label>
             </form>
@@ -96,7 +95,10 @@
                 <h2 class="title">Resultados históricos</h2>
             </div>
             <div id="results-dashboard-button">
-                
+                <label for="exercise-result-select">Selecciona el ejercicio:</label>
+                <!-- <select name="exercises" id="exercise-result-select">
+                    <option value="dog" class="filter-btn">Dog</option>
+                </select> -->
             </div>
             <div class="results-dashboard" id="routine-historic-results">
                 <!-- <p class="routine-date">Fri Jan 20 202</p>
