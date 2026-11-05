@@ -1,25 +1,32 @@
 import { createElement, clearElement } from '../utils/dom.js';
 
-function createSessionEntry(session){
-    const date = createElement('p', {
-        classes: ['routine-date'],
-        text: new Date(session.date.registered).toDateString(),
-    });
-    const exercises = session.exerciseList.map(exercise => createElement('p', {
-        classes: ['exercise-count'],
-        text: `${exercise.name} : ${exercise.repetitions ?? 0}`,
-    }));
-    return [date, createElement('div', { classes: ['exercise-container'] }, exercises)];
+const dateFormat = new Intl.DateTimeFormat('es', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
+
+function createExerciseRow(exercise){
+    return createElement('li', { classes: ['session__row'] }, [
+        createElement('span', { text: exercise.name }),
+        createElement('span', { classes: ['badge'], text: `${exercise.repetitions ?? 0} reps` }),
+    ]);
 }
 
-// Lists each session with its date and the reps per exercise.
+function createSessionCard(session){
+    const date = createElement('time', {
+        attributes: { datetime: session.date.registered },
+        classes: ['session__date'],
+        text: dateFormat.format(new Date(session.date.registered)),
+    });
+    const rows = createElement('ul', { classes: ['session__rows'] }, session.exerciseList.map(createExerciseRow));
+    return createElement('article', { classes: ['session'] }, [date, rows]);
+}
+
+// Lists each session, newest first, with the reps per exercise.
 function renderSessionHistory(container, sessions){
     clearElement(container);
     if (!sessions.length){
-        container.appendChild(createElement('p', { classes: ['routine-date'], text: 'Sin sesiones en este rango' }));
+        container.appendChild(createElement('p', { classes: ['empty'], text: 'No hay sesiones en este rango de fechas.' }));
         return;
     }
-    sessions.flatMap(createSessionEntry).forEach(element => container.appendChild(element));
+    [...sessions].reverse().forEach(session => container.appendChild(createSessionCard(session)));
 }
 
 export { renderSessionHistory };

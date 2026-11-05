@@ -1,0 +1,47 @@
+// Progress tracker: a segment bar under each label; done steps fill orange.
+.steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-2);
+    list-style: none;
+    counter-reset: step;
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-1);
+        color: var(--color-muted-foreground);
+        font-family: var(--font-heading);
+        font-size: 0.875rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        counter-increment: step;
+
+        &::before {
+            content: '';
+            height: 4px;
+            border-radius: var(--radius-pill);
+            background: var(--color-muted);
+            transition: background var(--duration-base) ease-out;
+        }
+
+        &.is-done::before {
+            background: var(--color-primary);
+        }
+
+        &.is-active {
+            color: var(--color-foreground);
+
+            &::before {
+                background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .steps {
+        min-width: 380px;
+    }
+}

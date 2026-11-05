@@ -1,13 +1,24 @@
 import { byId, showElement, clearElement } from '../utils/dom.js';
 import { getHistory, getCurrentSession } from '../state/sessionStore.js';
 import { createDateRange, filterUserSessionsInRange } from '../domain/dateRange.js';
-import { listExerciseNames, buildExerciseSeries } from '../domain/exerciseSeries.js';
+import { listExerciseNames, buildExerciseSeries, summarizeSeries } from '../domain/exerciseSeries.js';
 import { createSelectField } from '../components/SelectField.js';
 import { createDateRangeFilter } from '../components/DateRangeFilter.js';
 import { renderSessionHistory } from '../components/SessionHistory.js';
 import { renderExerciseChart } from '../components/ExerciseChart.js';
+import { renderStatCards } from '../components/StatCards.js';
 
 const CHART_ID = 'chartDiv2';
+
+function toStats(summary){
+    const sign = summary.progress > 0 ? '+' : '';
+    return [
+        { label: 'Sesiones', value: summary.sessions },
+        { label: 'Reps totales', value: summary.total },
+        { label: 'Mejor sesión', value: summary.best },
+        { label: 'Progreso', value: `${sign}${summary.progress}` },
+    ];
+}
 
 // Chart + history for the current user; both follow the selected exercise and date range.
 function initResultsView(){
@@ -16,7 +27,9 @@ function initResultsView(){
     const render = () => {
         const userName = getCurrentSession().user.name;
         const history = getHistory();
-        renderExerciseChart(CHART_ID, buildExerciseSeries(history, userName, filters.exercise, filters.range));
+        const series = buildExerciseSeries(history, userName, filters.exercise, filters.range);
+        renderStatCards(byId('results-stats'), toStats(summarizeSeries(series)));
+        renderExerciseChart(CHART_ID, series);
         renderSessionHistory(byId('routine-historic-results'),
             filterUserSessionsInRange(history, userName, filters.range));
     };
@@ -39,7 +52,6 @@ function initResultsView(){
 
     return {
         show: () => {
-            showElement(byId('appName'));
             showElement(byId('results-dashboard-container'));
             byId(CHART_ID).style.visibility = 'visible';
             mountFilters();

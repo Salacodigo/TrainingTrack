@@ -1,104 +1,110 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trainning Track</title>
+    <meta name="theme-color" content="#1F2937">
+    <title>Training Track</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F97316' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6.5 6.5v11M17.5 6.5v11M3 9.5v5M21 9.5v5M6.5 12h11'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap">
     <link rel="stylesheet" href="./styles/css/index.css">
 </head>
-<body class="body-text">
-    <header>
-        <nav></nav>
+<body>
+    <header class="app-bar">
+        <div class="brand">
+            <svg class="brand__icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6.5 6.5v11M17.5 6.5v11M3 9.5v5M21 9.5v5M6.5 12h11"/>
+            </svg>
+            <span class="brand__name">Training Track</span>
+        </div>
+        <ol class="steps" id="steps" aria-label="Progreso">
+            <li class="steps__item is-active" data-step="1">Perfil</li>
+            <li class="steps__item" data-step="2">Rutina</li>
+            <li class="steps__item" data-step="3">Entrenar</li>
+            <li class="steps__item" data-step="4">Resultados</li>
+        </ol>
     </header>
-    <main>
-        <div class="title-container" id="appName">
-            <h1 class="title" id="title-principal" >Training Track App</h1>
-            <p class="subtitle" >Track the progress in your training routine</p>
-        </div>
-        <div id="user-register-container" class="form-container">
-            <form id="user-register" action="" class="form-design">
-                <label for="user-name" class="">
-                    <span class="span-style">¿Cómo te llamas?</span>
-                    <input class="input-field" type="text" name="" id="user-name" placeholder="Ingresa tu nombre" maxlength="25" required>
+
+    <main class="app">
+        <section class="hero" id="appName">
+            <p class="eyebrow">Tu progreso, sesión a sesión</p>
+            <h1 class="hero__title">Entrena. Registra.<br><span class="text-primary">Supérate.</span></h1>
+        </section>
+
+        <section id="user-register-container" class="card">
+            <form id="user-register" class="form" novalidate>
+                <label for="user-name" class="field">
+                    <span class="field__label">¿Cómo te llamas?</span>
+                    <input class="field__input" type="text" id="user-name" placeholder="Tu nombre" maxlength="25" autocomplete="given-name" required>
                 </label>
+                <button type="submit" id="user-submit-btn" class="btn btn--primary">Continuar</button>
             </form>
-            <div class="form-button-container" id="user-btn-container">
-                <button type="submit" id="user-submit-btn" class="form-button">Continuar</button>
-            </div>
-        </div>
-        <div class="title-container">
-            <h2 class="title hidden" id="user-name-greeting"></h2>
-        </div>
-        
-        <div id="exercises-list-register-container" class="form-container vertical hidden">
-            <div class="title-container">
-                <h2 class="title">Registra los ejercicios</h2>
-            </div>
+        </section>
 
-            <form id="exercise-register" action="" class="form-design ">
-                <label for="exercise" class="">
-                    <span class="span-style">Hoy entrenaré:</span>
-                    <input class="input-field" type="text" name="" id="exercise-name" placeholder="Nombre del ejercicio" maxlength="25" required>
+        <h2 class="greeting hidden" id="user-name-greeting"></h2>
+
+        <section id="exercises-list-register-container" class="card hidden">
+            <header class="card__header">
+                <p class="eyebrow">Paso 2</p>
+                <h2 class="card__title">Arma tu rutina</h2>
+            </header>
+            <form id="exercise-register" class="form form--inline" novalidate>
+                <label for="exercise-name" class="field">
+                    <span class="field__label">Hoy entrenaré</span>
+                    <input class="field__input" type="text" id="exercise-name" placeholder="Ej. Sentadillas" maxlength="25" required>
                 </label>
+                <button type="submit" id="exercise-submit-btn" class="btn btn--secondary">Añadir</button>
             </form>
-            <div class="form-button-container" 
-            id="exercise-btn-container">
-                <button type="submit" id="exercise-submit-btn" class="form-button">Añadir a la rutina</button>
+
+            <h3 class="section-label">Ejercicios para hoy</h3>
+            <ul id="exercise-list" class="chips" aria-live="polite"></ul>
+
+            <button type="button" id="startTrainning-btn" class="btn btn--primary btn--block" disabled>Empezar rutina</button>
+        </section>
+
+        <section class="card hidden" id="routine-tracking-container">
+            <header class="card__header">
+                <p class="eyebrow">Paso 3</p>
+                <h2 class="card__title">¡A entrenar!</h2>
+                <p class="card__subtitle">Registra cuántas repeticiones haces por ejercicio.</p>
+            </header>
+
+            <form id="routine-tracking" class="rep-list" novalidate></form>
+
+            <div class="actions">
+                <button type="submit" form="routine-tracking" id="reps-tracking-btn" class="btn btn--secondary">Guardar avance</button>
+                <button type="button" id="save-tracking-btn" class="btn btn--accent">Terminar y ver resultados</button>
+            </div>
+        </section>
+
+        <section class="results hidden" id="results-dashboard-container">
+            <header class="card__header">
+                <p class="eyebrow">Paso 4</p>
+                <h2 class="card__title">Resultados históricos</h2>
+            </header>
+
+            <div class="card filters">
+                <div class="field" id="results-dashboard-button">
+                    <label class="field__label" for="exercise-result-select">Ejercicio</label>
+                    <div id="exercise-select-mount"></div>
+                </div>
+                <div id="results-date-filter"></div>
             </div>
 
-            <div class="title-container">
-                <h3 class="title">Ejercicios para hoy:</h3>
-            </div>
-            <div id="exercise-list-container" class="exercise-list-container">
-                <ul id="exercise-list" class="exercise-list"></ul>
-            </div>
-            <div class="form-button-container" id="trainningSession-btn-container">
-                <button type="button" id="startTrainning-btn" class="form-button" disabled>Empezar Rutina</button>
+            <div class="stats" id="results-stats" aria-live="polite"></div>
+
+            <div class="card chart-card">
+                <div id="chartDiv2" class="chart" style="visibility: hidden;"></div>
             </div>
 
-        </div>
-
-        <div class="form-container vertical hidden" id="routine-tracking-container">
-            <div class="title-container">
-                <h2 class="title">¡A entrenar!</h2>
-                <p class="subtitle">Registra cuantas repeticiones haces por cada ejercicio</p>
-            </div>
-
-            <form id="routine-tracking" action="" class="form-design "></form>
-
-            <div class="form-button-container" id="reps-tracking-container">
-                <button type="submit" id="reps-tracking-btn" class="form-button">Guardar avance</button>
-            </div>
-
-            <div class="title-container">
-                <h2 class="title">Terminar entrenamiento</h2>
-            </div>
-            <div class="form-button-container" id="save-tracking-container">
-                <button type="button" id="save-tracking-btn" class="form-button">Guardar y ver resultados </button>
-            </div>
-        </div>
-
-        <div id="chartDiv2" style="visibility: hidden;"></div>
-        <div class="hidden" id="results-dashboard-container">
-            <div id="select-exercise-container"></div>
-            <div class="title-container">
-                <h2 class="title">Resultados históricos</h2>
-            </div>
-            <div id="results-dashboard-button">
-                <label for="exercise-result-select">Selecciona el ejercicio:</label>
-                <div id="exercise-select-mount"></div>
-            </div>
-            <div id="results-date-filter"></div>
-            <div class="results-dashboard" id="routine-historic-results"></div>
-        </div>
-        
-
-
+            <h3 class="section-label">Sesiones</h3>
+            <div class="history" id="routine-historic-results"></div>
+        </section>
     </main>
 
     <script src="https://code.jscharting.com/3.4.0/jscharting.js"></script>
-
     <script type="module" src="./js/index.js"></script>
 </body>
 </html>
