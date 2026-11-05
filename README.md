@@ -1,25 +1,42 @@
 # TrainingTrack
-MVP to Track physical activity. A list of exercises with reps.
+MVP to track physical activity: build a routine, log the reps of each exercise and follow your progress over time.
 
 [ link to project ](https://salacodigo.github.io/TrainingTrack/src/)
 
-## Date range filter
+## Features
 
-The **Desde / Hasta** date range filters both the chart and the historic list. Both dates are optional and
-inclusive: leave one empty to filter only from or until a date.
+- **4-step flow** with a progress tracker: Perfil → Rutina → Entrenar → Resultados.
+- **Routine builder**: add exercises; they appear as chips.
+- **Rep counter**: each exercise has big −/+ buttons and a numeric keyboard on mobile.
+- **Results dashboard**:
+  - Summary cards: sessions, total reps, best session and progress (last vs. first session).
+  - Trend chart of reps per session for the selected exercise.
+  - Session history, newest first.
+- **Filters**: by exercise and by date range (**Desde / Hasta**). Both dates are optional and inclusive;
+  the cards, chart and history all follow the filters.
+- Data is saved in the browser (`localStorage`), per user name.
 
 ## Getting started
 
 No build step is needed to run the app: it uses native ES modules and loads JSCharting from its CDN.
 
 ```bash
-npm install          # only needed for tests tooling and Sass
+npm install          # dev tooling only (Sass)
 npm start            # serves src/ at http://localhost:8080
-npm test             # unit tests (Node built-in test runner, no extra dependencies)
+npm test             # unit tests (Node built-in test runner)
 npm run build:css    # compiles src/styles/scss into src/styles/css/index.css
 ```
 
 Requires Node 20+ (for `node --test`) and Python 3 for `npm start` (any static server works).
+After editing any `.scss` file, run `npm run build:css` and commit the generated CSS: GitHub Pages serves it as is.
+
+## Dependencies
+
+| Dependency | Version | Use |
+|---|---|---|
+| [JSCharting](https://jscharting.com/) | 3.4.0 (CDN) | Results chart |
+| [Barlow / Barlow Condensed](https://fonts.google.com/specimen/Barlow) | Google Fonts | Body and heading fonts |
+| [Sass](https://sass-lang.com/) | ^1.107.1 (dev) | Compiles the styles |
 
 ## Architecture
 
@@ -34,11 +51,13 @@ src/js/
 ├── components/         # Reusable UI pieces; receive data/callbacks, never read global state
 │   ├── DateRangeFilter.js
 │   ├── SelectField.js
-│   ├── NumberField.js
+│   ├── NumberField.js  # −/+ stepper
 │   ├── ItemList.js
+│   ├── StatCards.js
+│   ├── StepIndicator.js
 │   ├── SessionHistory.js
 │   └── ExerciseChart.js
-├── domain/             # Pure logic (no DOM, no libraries) — fully unit tested
+├── domain/             # Pure logic (no DOM, no libraries), fully unit tested
 │   ├── dateRange.js
 │   └── exerciseSeries.js
 ├── state/
@@ -47,6 +66,12 @@ src/js/
 │   └── storage.js      # The only module that touches localStorage
 └── utils/
     └── dom.js          # createElement, show/hide, clear helpers
+
+src/styles/scss/
+├── index.scss          # @use entry point
+├── base/_tokens.scss   # Design tokens (colors, fonts, spacing, radius) as CSS variables
+├── base/_base.scss     # Reset, typography, focus ring, reduced motion
+└── components/         # One partial per UI block: layout, steps, card, forms, buttons, tracking, results
 ```
 
 Dependency direction: `views → components / state / domain`, `state → services`, `components → utils`.
@@ -58,7 +83,23 @@ Rules for new code:
   (see `createDateRangeFilter({ onChange })`) so it can be reused in any view.
 - **New calculation?** Put it in `domain/` as a pure function and add a test in `test/`.
 - **New persistence (e.g. a real database, item 8)?** Replace `services/storage.js`; nothing else changes.
+- **New style?** Use the tokens in `base/_tokens.scss`, never raw colors or sizes.
 - Text from the user is written with `textContent`, never `innerHTML`.
+
+## Design
+
+The visual direction was generated with the `ui-ux-pro-max` skill for a fitness tracker:
+
+- **Style:** vibrant and block-based, dark slate background.
+- **Colors:** energy orange `#F97316` (primary) and success green `#22C55E` (finish actions and rep badges).
+- **Type:** Barlow Condensed for headings, Barlow for body text.
+- **Accessibility:** text contrast of at least 4.5:1, visible labels on every field, 48px touch targets,
+  a visible focus ring, and `prefers-reduced-motion` respected.
+
+## Tests
+
+22 unit tests in `test/` cover the date range filter, the chart series and summary, and the session store
+(with an in-memory `localStorage`). Run them with `npm test`.
 
 ## Roadmap
 
