@@ -30,4 +30,16 @@ function buildExerciseSeries(pSessions, pUserName, pExerciseName, pRange){
     return { name, points };
 }
 
-export { formatSessionLabel, listExerciseNames, buildExerciseSeries };
+// Headline numbers for a series: sessions, total reps, best session and change vs. the first one.
+function summarizeSeries(pSeries){
+    const reps = pSeries.points.map(point => point.y ?? 0);
+    if (!reps.length) return { sessions: 0, total: 0, best: 0, progress: 0 };
+    return {
+        sessions: reps.length,
+        total: reps.reduce((sum, value) => sum + value, 0),
+        best: Math.max(...reps),
+        progress: reps[reps.length - 1] - reps[0],
+    };
+}
+
+export { formatSessionLabel, listExerciseNames, buildExerciseSeries, summarizeSeries };

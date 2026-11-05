@@ -46,3 +46,19 @@ test('buildExerciseSeries ignores other users with the same exercise', () => {
     const series = buildExerciseSeries(history, 'Ana', 'sentadillas', createDateRange(null, null));
     assert.deepEqual(series.points, []);
 });
+
+test('summarizeSeries returns zeros for an empty series', async () => {
+    const { summarizeSeries } = await import('../src/js/domain/exerciseSeries.js');
+    assert.deepEqual(summarizeSeries({ name: 'x', points: [] }), { sessions: 0, total: 0, best: 0, progress: 0 });
+});
+
+test('summarizeSeries totals reps, finds the best session and the progress', async () => {
+    const { summarizeSeries } = await import('../src/js/domain/exerciseSeries.js');
+    const series = { name: 'x', points: [{ y: 20 }, { y: 35 }, { y: 30 }] };
+    assert.deepEqual(summarizeSeries(series), { sessions: 3, total: 85, best: 35, progress: 10 });
+});
+
+test('summarizeSeries counts missing reps as zero', async () => {
+    const { summarizeSeries } = await import('../src/js/domain/exerciseSeries.js');
+    assert.equal(summarizeSeries({ name: 'x', points: [{ y: undefined }, { y: 5 }] }).total, 5);
+});
