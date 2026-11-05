@@ -1,72 +1,22 @@
-// Action Classes
-import {
-    userEventListeners
-} from "../js/actions/user_form.js";
-import {
-    exerciseEventListeners
-} from "../js/actions/exercise_form.js";
-import {
-    trackingEventListeners
-} from "../js/actions/tracking_form.js"
-import {
-    getFromLocalStorage
-} from './storage/function_localStorage.js'
+// Entry point: wires the screens together. Views never import each other; they talk through callbacks.
+import { byId, hideElement } from './utils/dom.js';
+import { loadHistory } from './state/sessionStore.js';
+import { initUserView } from './views/userView.js';
+import { initExerciseView } from './views/exerciseView.js';
+import { initTrackingView } from './views/trackingView.js';
+import { initResultsView } from './views/resultsView.js';
 
-
-
-let sessionInfo = {
-    date : {
-        created: null,
-        modified: null,
-        registered: null,
-    },
-    user : {
-        name: "Guest",
-    },
-    exerciseList : [
-        /*
-        {
-            id : "Exercise-not-set",
-            name: "Exercise-not-set",
-            repetitions: 0,
+function startApp(){
+    loadHistory();
+    const results = initResultsView();
+    const tracking = initTrackingView({ onFinish: results.show });
+    const exercises = initExerciseView({
+        onStart: () => {
+            hideElement(byId('user-name-greeting'));
+            tracking.show();
         },
-        */
-    ]
+    });
+    initUserView({ onContinue: exercises.show });
 }
 
-let overallSessionsInfo = [];
-
-function AppEventListeners(){
-    document.addEventListener('DOMContentLoaded', () => {
-        loadHistoricData();
-    })
-}
-
-
-// Functions
-console.log("Iniciando...");
-AppEventListeners();
-userEventListeners();
-exerciseEventListeners();
-trackingEventListeners();
-console.log("Ejecutandose...");
-
-
-function loadHistoricData(){
-    try {
-        let overallSessionsLocalStorage = getFromLocalStorage('sessionsHistoricData');
-        if(!overallSessionsLocalStorage){
-            return;
-        }
-        overallSessionsInfo = overallSessionsLocalStorage;
-        
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-
-export {
-    sessionInfo,
-    overallSessionsInfo
-}
+document.addEventListener('DOMContentLoaded', startApp);

@@ -51,11 +51,7 @@
                 <h3 class="title">Ejercicios para hoy:</h3>
             </div>
             <div id="exercise-list-container" class="exercise-list-container">
-                <ul id="exercise-list" class="exercise-list">
-                    <!-- <li class="exercise-item">
-                        Sentadilla
-                    </li> -->
-                </ul>
+                <ul id="exercise-list" class="exercise-list"></ul>
             </div>
             <div class="form-button-container" id="trainningSession-btn-container">
                 <button type="button" id="startTrainning-btn" class="form-button" disabled>Empezar Rutina</button>
@@ -69,12 +65,7 @@
                 <p class="subtitle">Registra cuantas repeticiones haces por cada ejercicio</p>
             </div>
 
-            <form id="routine-tracking" action="" class="form-design ">
-                <!-- <label for="1">
-                    <span class="span-style">Sentadillo</span>
-                    <input type="number" class="input-field" name="Sentadillo" id="1" placeholder="0" required="true">
-                </label> -->
-            </form>
+            <form id="routine-tracking" action="" class="form-design "></form>
 
             <div class="form-button-container" id="reps-tracking-container">
                 <button type="submit" id="reps-tracking-btn" class="form-button">Guardar avance</button>
@@ -96,30 +87,17 @@
             </div>
             <div id="results-dashboard-button">
                 <label for="exercise-result-select">Selecciona el ejercicio:</label>
-                <!-- <select name="exercises" id="exercise-result-select">
-                    <option value="dog" class="filter-btn">Dog</option>
-                </select> -->
+                <div id="exercise-select-mount"></div>
             </div>
-            <div id="results-date-filter">
-                <label for="date-from-filter">Desde:</label>
-                <input type="date" id="date-from-filter" class="input-field">
-                <label for="date-to-filter">Hasta:</label>
-                <input type="date" id="date-to-filter" class="input-field">
-            </div>
-            <div class="results-dashboard" id="routine-historic-results">
-                <!-- <p class="routine-date">Fri Jan 20 202</p>
-                <div class="exercise-container">
-                    <p class="exercise-count">Sentadilla : 32</p>
-                </div> -->
-            </div>
+            <div id="results-date-filter"></div>
+            <div class="results-dashboard" id="routine-historic-results"></div>
         </div>
         
 
 
     </main>
 
-    <script src="https://code.jscharting.com/2.9.0/jscharting.js"></script>
-    <script type="module" src="./js/charts/historicData.js"></script>
+    <script src="https://code.jscharting.com/3.4.0/jscharting.js"></script>
 
     <script type="module" src="./js/index.js"></script>
 </body>
