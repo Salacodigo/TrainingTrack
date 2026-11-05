@@ -4,7 +4,9 @@ import {
 } from '../../index.js';
 import {
     prepareData,
-    exercisesRegistered
+    exercisesRegistered,
+    setDateRange,
+    isInDateRange
 } from '../../charts/historicData.js';
 
 
@@ -199,40 +201,55 @@ function filterChartByTypeOfExercise(){
 }
 
 
+function listenDateRangeFilter(){
+    document.getElementById('date-from-filter').addEventListener('change', filterResultsByDateRange);
+    document.getElementById('date-to-filter').addEventListener('change', filterResultsByDateRange);
+}
+
+function filterResultsByDateRange(){
+    const from = document.getElementById('date-from-filter').value;
+    const to = document.getElementById('date-to-filter').value;
+    setDateRange(from, to);
+
+    filterChartByTypeOfExercise();
+    printHistoricResults();
+}
+
 function printHistoricResults( ){
 
     const overallResultsContainer = document.getElementById('routine-historic-results');
     const selectExerciseContainer = document.getElementById('select-exercise-container');
     let dateInfoContainer = null;
     let exercisesContainer = null;
+    cleanContainer(overallResultsContainer);
 
     for(let pos in overallSessionsInfo){
 
         let session = overallSessionsInfo[pos];
 
-        if(session.user.name == sessionInfo.user.name){
-    
-            dateInfoContainer = document.createElement('p');
-            dateInfoContainer.setAttribute("class", "routine-date");
+        if(session.user.name != sessionInfo.user.name) continue;
+        if(!isInDateRange(session.date.registered)) continue;
+
+        dateInfoContainer = document.createElement('p');
+        dateInfoContainer.setAttribute("class", "routine-date");
+        
+        let date = new Date(session.date.registered);
+        dateInfoContainer.innerHTML = date.toDateString();
+        
+        exercisesContainer = document.createElement('div');
+        exercisesContainer.setAttribute("class", "exercise-container");
             
-            let date = new Date(session.date.registered);
-            dateInfoContainer.innerHTML = date.toDateString();
+        let sessionExercisesList = session.exerciseList;
+
+        for(let pos=0; pos < sessionExercisesList.length; pos++){
+            const sessionExercisesText = document.createElement('p');
+            sessionExercisesText.setAttribute("class", "exercise-count");
             
-            exercisesContainer = document.createElement('div');
-            exercisesContainer.setAttribute("class", "exercise-container");
-                
-            let sessionExercisesList = session.exerciseList;
-    
-            for(let pos=0; pos < sessionExercisesList.length; pos++){
-                const sessionExercisesText = document.createElement('p');
-                sessionExercisesText.setAttribute("class", "exercise-count");
-                
-                sessionExercisesText.innerHTML += `
-                ${sessionExercisesList[pos].name} : ${sessionExercisesList[pos].repetitions}
-                `;
-                
-                exercisesContainer.appendChild(sessionExercisesText);
-            }
+            sessionExercisesText.innerHTML += `
+            ${sessionExercisesList[pos].name} : ${sessionExercisesList[pos].repetitions}
+            `;
+            
+            exercisesContainer.appendChild(sessionExercisesText);
         }
         overallResultsContainer.appendChild(dateInfoContainer);
         overallResultsContainer.appendChild(exercisesContainer);
@@ -249,5 +266,6 @@ export {
     showRepsTracking,
     clearRepsTracking,
     printExercisesPracticedButtons,
-    printHistoricResults
+    printHistoricResults,
+    listenDateRangeFilter
 }

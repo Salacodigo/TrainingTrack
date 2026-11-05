@@ -5,6 +5,20 @@ import {
 
  let sessionDataPrinted = [];
  let exercisesRegistered = [];
+ let dateRange = { from: null, to: null };
+
+// Inputs of type date give 'YYYY-MM-DD'; the range covers both full days in local time.
+function setDateRange(pFrom, pTo){
+    dateRange.from = pFrom ? new Date(`${pFrom}T00:00:00`) : null;
+    dateRange.to = pTo ? new Date(`${pTo}T23:59:59.999`) : null;
+}
+
+function isInDateRange(pDate){
+    const date = new Date(pDate);
+    if (dateRange.from && date < dateRange.from) return false;
+    if (dateRange.to && date > dateRange.to) return false;
+    return true;
+}
 function prepareData(pExerciseName){
     pExerciseName = pExerciseName.toLowerCase();
 
@@ -25,7 +39,7 @@ function prepareData(pExerciseName){
                         if (!exercisesRegistered.includes(exerciseName)){
                             exercisesRegistered.push(exerciseName);
                         }
-                        if( exerciseName == pExerciseName){
+                        if( exerciseName == pExerciseName && isInDateRange(registeredSession.date.registered)){
 
                             sessionDataPrinted[0].points.push(
                                 {
@@ -72,4 +86,6 @@ function renderChart(series){
 export {
     exercisesRegistered,
     prepareData,
+    setDateRange,
+    isInDateRange,
 }

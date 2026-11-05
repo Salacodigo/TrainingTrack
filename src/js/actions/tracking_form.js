@@ -5,7 +5,8 @@ import {
 import {
     clearRepsTracking,
     printExercisesPracticedButtons,
-    printHistoricResults
+    printHistoricResults,
+    listenDateRangeFilter
 } from "../actions/UI/UIActions.js"
 import {
     prepareData
@@ -93,6 +94,7 @@ function saveTracking(){
     prepareData(sessionInfo.exerciseList[0].name);
     printExercisesPracticedButtons();
     printHistoricResults();
+    listenDateRangeFilter();
 }
 
 
