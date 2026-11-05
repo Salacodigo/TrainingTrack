@@ -3,15 +3,7 @@ MVP to Track physical activity. A list of exercises with reps.
 
 [ link to project ](https://salacodigo.github.io/TrainingTrack/src/)
 
-## Screenshots
-
-| 1. User | 2. Routine | 3. Tracking |
-|---|---|---|
-| ![User](docs/images/01-user.png) | ![Routine](docs/images/02-routine.png) | ![Tracking](docs/images/03-tracking.png) |
-
-| 4. Results | 5. Date range filter | 6. Filter by exercise |
-|---|---|---|
-| ![Results](docs/images/04-results.png) | ![Date range filter](docs/images/05-date-filter.png) | ![Exercise filter](docs/images/06-exercise-filter.png) |
+## Date range filter
 
 The **Desde / Hasta** date range filters both the chart and the historic list. Both dates are optional and
 inclusive: leave one empty to filter only from or until a date.
