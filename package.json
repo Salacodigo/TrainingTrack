@@ -1,0 +1,13 @@
+{
+  "name": "training-track",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "build:css": "sass src/styles/scss/index.scss src/styles/css/index.css",
+    "start": "python -m http.server 8080 --directory src"
+  },
+  "devDependencies": {
+    "sass": "^1.107.1"
+  }
+}

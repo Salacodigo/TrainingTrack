@@ -15,6 +15,21 @@
 }
 
 
+.date-range-filter{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 10px auto;
+    font-size: 0.9rem;
+
+    .input-field{
+        width: auto;
+        margin: 0;
+    }
+}
+
+
 #results-dashboard-container{
 
     margin: 5px auto 10px;
